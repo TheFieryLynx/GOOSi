@@ -1,0 +1,96 @@
+\textbf{\LARGE osn 5. Функциональные ряды. Равномерная сходимость. Признак Вейерштрасса. Непрерывность суммы  равномерно сходящегося ряда непрерывных функций.}
+
+\textbf{Определения:}
+\begin{itemize}
+    \item \mathLet ~ на числовой прямой $E_1$ или в $m$-мерном евклидовом пространстве $E_m$ задано некоторое множество $\{x\}$.
+    Если каждому натуральному числу $n$ ставится в соответствие по определённому закону некоторая функция $f_n(x)$, определённая на множестве $\{x\}$, то множество занумерованных функций $f_1(x),f_2(x),\dots,f_n(x),\dots$ называется \textbf{функциональной последовательностью.}
+    
+    \item \faEye \ функциональную последовательность $\{u_n(x)\}$, c областью определения $\{x\}$.
+    Формально написанная сумма
+    $$\displaystyle \sum_{n=1}^{\infty} u_n(x) = u_1(x) + u_2(x) + \dots + u_n(x) + \dots$$
+    бесконечного числа членов указанной функциональной последовательности называется \textbf{функциональным рядом.}
+    Функции $u_n(x)$ называются \textbf{членами рассматриваемого ряда}, а множество $\{x\}$, на котором определены эти функции, называется \textbf{областью определения} этого ряда.
+    
+    \item  \mathLet ~ функциональная последовательность
+    $f_1(x), f_2(x), \dots, f_n(x), \dots$ сходится на множестве $\{x\}$ пространства $E_m$ к предельной функции $f(x)$, т.е. сходится в каждой его точке.
+    Последовательность \textbf{сходится к функции $f(x)$ равномерно} (обозн. $\rightrightarrows$) на множестве $\{x\}$, если $\forall \varepsilon > 0 ~ \exists$ номер $N(\varepsilon)$ такой, что $\forall n$, удовлетворяющих $n \geqslant N(\varepsilon$), и $\forall x \in \{x\}$ справедливо неравенство $|f_n(x) - f(x)| < \varepsilon$.
+    
+    \item Функциональный ряд называется \textbf{равномерно сходящимся} на множестве $\{x\}$ к сумме $S(x)$, если последовательность $\{S_n(x)\}$ его частичных сумм сходится равномерно на множестве $\{x\}$ к предельной функции $S(x)$.
+
+\end{itemize}
+
+
+\textbf{Теоремы:}
+
+\bigbreak 
+\textbf{Критерий Коши для функциональных последовательностей.} 
+$\{f_n(x)\} \rightrightarrows$ на $\{x\} \iff \forall \varepsilon > 0$ $\exists N: \forall n \geq N$ $\forall p \in \mathbb{N}: |f_{n+p}(x) - f_n(x)| < \varepsilon$ выполнено $\forall x \in \{x\}$
+
+\begin{proof}
+$\Rightarrow$: $f(x) \equiv \lim_{n \rightarrow \infty} f_n(x)$, $\forall \varepsilon > 0$ $\exists N: \forall n \geq N$ $\forall x \in \{x\}$: \newline 
+$|f_n(x) - f(x)| < \varepsilon$ и $|f_{n+p}(x) - f(x)| < \varepsilon $ $ \forall p \in \mathcal{N}$ $\implies |f_{n+p}(x) - f_n(x)| \leq |f_{n+p}(x) - f(x)| + |f(x) - f_n(x)| < 2 \varepsilon$ \newline
+$\Leftarrow$: Заметим, что данное условие для $\forall$ фиксированного $x \in \{x\}$ означает сх. $\{f_n(x)\}$ в этой точке $x \in \{x\} \implies \exists f(x) \equiv \lim_{n \rightarrow \infty} f_n(x)$
+В нер-ве $|f_{n+p}(x) - f_n(x)| < \varepsilon$ $\forall p \in \mathcal{N}$ перейдем к $lim$ при $p \rightarrow \infty \implies |f(x) - f_n(x)| \leq \varepsilon$. По определению это означает $\{f_n(x)\} \rightrightarrows f(x)$
+\end{proof}
+
+\bigbreak 
+\textbf{Критерий Коши для функциональных рядов}. Функциональный ряд 
+$\displaystyle \sum_{k=1}^{\infty} u_k(x)$ равномерно на множестве $\{x\}$ сходится к некоторой сумме 
+$\iff ~ \forall \varepsilon > 0 ~ \exists N(\varepsilon): ~ \forall n \geqslant N(\varepsilon), ~ \forall p \in \mathbb{N}, ~ \forall x \in \{x\}$, выполнено
+$\left|\sum_{k=n+1}^{n+p} u_k(x)\right| < \varepsilon$
+\begin{proof}
+Следует из критерия Коши для функ. последовательностей, так как $\sum^{n+p}_{k=n+1} u_k(x)=S_{n+p}(x)-S_n(x)$
+\end{proof}
+
+
+\bigbreak 
+\textbf{Признак Вейерштрасса}. Если функциональный ряд $\displaystyle \sum_{k=1}^{\infty} u_k(x)$ определён на множестве $\{x\}$ пространства $E_m$ и если существует сходящийся числовой ряд $\displaystyle \sum_{k=1}^{\infty} c_k$ такой, что для всех точек $x$ множества $\{x\}$ и для всех номеров $k$ справедливо неравенство $|u_k(x)| \leqslant c_k$, то функциональный ряд $\displaystyle \sum_{k=1}^{\infty} u_k(x)$ сходится равномерно на множестве $\{x\}$.
+
+\begin{proof}
+$\sum c_k \to \Leftrightarrow \forall \varepsilon > 0$ $\exists N$ $\forall n \geq N$ $\forall p \in \mathcal{N}: \sum_{k = n + 1}^{n + p} c_n < \varepsilon$ \newline
+Тогда $\left|\sum_{k = n + 1}^{n + p}u_k(x)\right| \leq \sum_{k = n + 1}^{n+p}|u_k(x)| \leq \sum_{k = n + 1}^{n+p}c_k < \varepsilon, \forall x \in \{x\}$. В силу критерия Коши теорема доказана.
+\end{proof}
+
+\bigbreak 
+\textbf{Теорема о почленном переходе к пределу.}
+Если функциональный ряд $\displaystyle \sum_{k=1}^{\infty} u_k(x)$ сходится равномерно на множестве $\{x\}$ к сумме $S(x)$ и у всех членов этого ряда существует в точке $x_0$ ($x_0$ --- предельная точка множества $\{x\}$) предел $\displaystyle\lim_{x\to x_0} u_k(x) = b_k$, то и сумма ряда $S(x)$ имеет в точке $x_0$ предел, причём $$\displaystyle\lim_{x\to x_0} S(x) = \displaystyle\lim_{x\to x_0} \displaystyle\sum_{k=1}^{\infty} u_k(x) = \displaystyle\sum_{k=1}^{\infty} \displaystyle\lim_{x\to x_0} u_k(x) = \displaystyle\sum_{k=1}^{\infty} b_k$$
+(или, как говорят, к пределу можно переходить почленно), т.е. символ $\lim$ предела и символ $\sum$ суммирования можно переставлять местами.
+
+\begin{proof}
+\{Кр. Коши \} $\Rightarrow \forall \varepsilon > 0$ $\exists N = N(\varepsilon)$ $\forall n \geq N$ $\forall p \in \mathcal{N}$ $\implies \left|\sum_{k=n+1}^{n+p}u_k(x)\right| < \varepsilon$. Фиксируем $n$ и $p$ и перейдем к пределу при $x \rightarrow x_0$ $|b_{n+1} + \dots + b_{n+p}| \leq \varepsilon \implies \sum_{k=1}^{\infty}b_k$ сходится.
+% wtf?
+$\forall x \in U_{\delta}(x_0): $
+$\left\{S(x) = \sum_{k=1}^{\infty}u_k(x) \forall x \in U_{\delta}(x_0) \right\} $
+$\implies \left|S(x) - \sum_{k=1}^{\infty}b_k\right| \leq \left|\sum_{k=1}^{n}u_k(x) - \sum_{k=1}^{n}b_k\right| + \left|\sum_{k=n+1}^{\infty}u_k(x)\right| + \left|\sum_{k=n+1}^{\infty}b_k\right|$ $ \forall x \in U_{\delta}(x_0)$
+
+Оценим слагаемые отдельно:
+$\forall \varepsilon > 0$ $\exists n:$ $\forall x \in \mathcal{E} \implies $
+$\left|\sum_{k=n+1}^{\infty}b_k\right| < \frac{\varepsilon}{3}$, так как ряд $\sum_{k=1}^{\infty}b_k$ сходится;
+$\left| \sum_{k=n+1}^{\infty}u_k(x) \right| < \frac{\varepsilon}{3}$, так как $\sum_{k=1}^{\infty}u_k(x)$ равномерно сходимостся;
+$\exists \delta > 0: \forall x \in U_{\delta}(x_0) \left| \sum_{k=1}^{n}u_k(x) - \sum_{k=1}^{n}b_k \right| < \frac{\varepsilon}{3}$, так как $\lim_{x \rightarrow x_0}{u_k(x)} = b_k$.
+$\Longrightarrow \left| S(x) - \sum_{k=1}^{\infty}b_k \right| < \varepsilon \forall x \in U_{\delta}(x_0) \forall n > N$
+\end{proof}
+
+\bigbreak 
+\textbf{Непрерывность предельной функции для ф.п.}. 
+$\mathLet ~ \forall n \in \mathbb{N} \implies f_n(x) \in C(E)$ и 
+$f_n(x) \rightrightarrows^E f(x)$. Тогда $f(x) \in C(E)$.
+
+\begin{proof}
+$\forall \varepsilon > 0 \exists N(\varepsilon): \forall n \geq N, \forall x \in E \implies \left|f_n(x)-f(x)\right|< \varepsilon$.
+Выберем $x_0 \in E, \forall x \in U(x_0)$ ($\varepsilon$-окрестность $x_0$).\\
+\faEye \ $\left|f(x)-f(x_0)\right| \leq \displaystyle\underbrace{\left|f(x) - f_N(x)\right|}_{\text{(1)}}+\displaystyle\underbrace{\left|f_N(x) - f_N(x_0)\right|}_{\text{(2)}}+\\ +\displaystyle\underbrace{\left|f_N(x_0) - f(x_0)\right|}_{\text{(3)}} < \varepsilon$\\
+$(1) < \frac{\varepsilon}{3}, (3) < \frac{\varepsilon}{3}$ в силу сходимости к предельной функции. \\
+$(2) < \frac{\varepsilon}{3}$ в силу непрерывности всех членов.
+\end{proof}
+
+\bigbreak 
+\textbf{Непрерывность суммы ряда}. Если в условиях теоремы о почленном переходе к пределу дополнительно потребовать, чтобы точка $x_0$ принадлежала множеству $\{x\}$ и чтобы все члены $u_k(x)$ функционального ряда были непрерывны в точке $x_0$, то и сумма $S(x)$ этого ряда будет непрерывна в точке $x_0$.
+
+\begin{proof}
+Достаточно применить предыдущую теорему к функциям $f_n(x)=\sum^{n}_{k=1}u_k(x)$ и $f(x) = S(x)$
+\end{proof}
+
+% -------- source --------
+\bigbreak
+[\cite{matanBySashaK}]

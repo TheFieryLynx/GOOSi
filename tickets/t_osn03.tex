@@ -1,0 +1,90 @@
+\textbf{\LARGE osn 3. Определенный интеграл, его свойства. Основная формула интегрального исчисления.}
+
+\textbf{Определения:}
+
+\mathLet \ $f(x)$ задана на $[a,b],~a<b$, $T$ --- разбиение $[a,b]:~a=x_0 < x_1 < \dots < x_n = b$ на n частичных сегментов $[x_0,x_1],~\dots,~[x_{n-1},x_n]$. \mathLet \ $\xi_i$  --- любая точка $[x_{i-1}, x_i], \Delta x_i = x_i - x_{i-1}$ --- длина сегмента. $\Delta = max(\Delta x_i)$.
+
+\bigbreak
+Число $I\{x_i, \xi_i\}$, где
+$I\{x_i,\xi_i\} = f(\xi_1) \Delta x_1 + f(\xi_2) \Delta x_2 + \dots + f(\xi_n) \Delta x_n = \displaystyle\sum_{i=1}^n f(\xi_i) \Delta x_i$ называется \textbf{интегральной суммой} $f(x)$, соответствующей данному разбиению $T$ сегмента $[a, b]$ и данному выбору промежуточных точек $\xi_i$ на частичных сегментах $[x_{i-1}, x_i]$.
+
+\bigbreak
+Число $I$ называется \textbf{пределом интегральных сумм} $I\{x_i, \xi_i\}$ при $\delta \to 0$, если для $\forall \varepsilon > 0~\exists \delta = \delta(\varepsilon)$ : для $\forall$ разбиения $T$ сегмента $[a, b]$, для которого $\Delta  = \max \Delta x_i < \delta$, независимо от выбора точек $\xi_i$ на $[x_{i-1}, x_i]$ выполняется неравенство $|I\{x_i, \xi_i\} - I| < \varepsilon$.
+$$I = \lim\limits_{\Delta \to 0} I\{x_i,\xi_i\} $$
+
+\bigbreak
+Функция называется \textbf{интегрируемой (по Риману)} на $[a, b]$, если $\exists$ конечный предел $I$ интегральных сумм $f(x)$ при $\Delta \to 0$. Предел $I$ --- \textbf{определённый интеграл} от $f(x)$ по $[a,b]$: $I = \int\limits_a^b f(x)dx$
+
+\bigbreak
+\mathLet \ $f(x)$ ограничена на $[a, b]$, $T$ --- разбиение $[a, b]$ точками $a = x_0 < x_1 < \dots < x_n = b$, $M_i$ и $m_i$ --- точная верхняя граница и точная нижняя граница $f(x)$ на $[x_{i-1}, x_i]$. Суммы $S = \sum_{i=1}^n M_i\Delta x_i$ и $s = \sum_{i=1}^n m_i\Delta x_i$ называются \textbf{верхней и нижней суммами} $f(x)$ для данного $T$ сегмента $[a,b]$.
+
+\bigbreak
+\mathLet \ $\overline{I}$ --- точная нижняя граница множества $\{S\}$ верхних сумм, $\underline{I}$ --- точная верхняя граница множества $\{s\}$ нижних сумм: $\overline{I} = inf\{S\}$, $\underline{I} = sup\{s\}$. Числа $\overline{I}$ и $\underline{I}$ --- \textbf{верхний и нижний интегралы Дарбу} от $f(x)$.
+
+\bigbreak
+\textbf{Теоремы:}
+
+\textbf{Необходимое условие интегрируемости -- ограниченность.} Неограниченная на $[a, b]$ функция $f(x)$ не интегрируема на $[a, b]$.
+
+\begin{proof}
+Функция f(x) не ограничена на каком-либо промежутке $[x_{k-1}, x_k]$ $\implies \forall$ разбиения слагаемое $f(\xi_k)\Delta x_k$ можно сделать сколь угодно большим $\implies$ $\nexists lim$
+\end{proof}
+
+\bigbreak
+\textbf{Лемма Дарбу.} Нижний и верхний интеграллы Дарбу $\overline{I}$ и $\underline{I}$ от $f(x)$ по $[a, b]$ являются соответственно пределами верхних и нижних сумм при $\Delta \to 0$.
+
+\begin{proof}
+При $f(x) = const$ -- очевидно. $\mathLet ~ f(x) \neq const$, $M = \sup_{[a, b]}f(x) > \inf_{[a,b]}f(x) = m$. 
+Фикс. $\varepsilon > 0$, $\exists$ разбиение $T^* = {x_k^*}, ~ 0<k<l$ -- разбиение на $[a, b]$, такое что $S(T^*) - \overline{I} < \frac{\varepsilon}{2}$
+
+Положим $\delta = \frac{\varepsilon}{2(M - m)(l - 1)} > 0 $ ($\delta$ зависит только от $\varepsilon$). 
+\mathLet \ T -- произвольное разбиение $[a, b]$. $T' = T \cup T^*$, тогда $0 \leq S(T) - S(T') \leq (M - m)\Delta_T(l-1) < (M - m)(l - 1)\delta = \frac{\varepsilon}{2}$, $\Delta_T$ - диаметр разбиения $ = \max_{1\leq k \leq n}\Delta x_k$, $\Delta_T < \delta$ .
+Получаем, что $\forall\varepsilon > 0  ~ \exists\delta=\delta(\varepsilon) > 0$ такая что $\forall T$ - разбиения $[a, b]$ 
+$\implies 0 \leq S(T) - \overline{I}$ = $(S(T) - S(T')) + (S(T') - \overline{I}) \leq \frac{\varepsilon}{2} + (S(T^*) - \overline{I}) \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$
+\end{proof}
+
+\bigbreak
+\textbf{Критерий Римана интегрируемости функции.} $\mathLet ~ f(x)$ определена и ограничена на $[a,b]$. $f\in \mathcal{R}[a, b] \iff \forall \varepsilon > 0$ $\exists T$ -- разбиение $[a, b]$, такое что $S(T) - s(T) < \varepsilon$.
+
+\begin{proof}
+
+($\Rightarrow$) Пусть $f(x)$ интегрируема на $[a,b]$. Тогда по определению интеграла $\forall \varepsilon > 0~\exists \delta = \delta(\varepsilon)$ : для $\forall$ размеченного разбиения $V$ сегмента $[a, b]$, для которого $\Delta _V < \delta$, выполнено: $|I - \sigma(V)| < \dfrac{\varepsilon}{3}$. Или, что то же самое:$I - \dfrac{\varepsilon}{3} < \sigma(V) < I + \dfrac{\varepsilon}{3}$. 
+Тогда для верхняя и нижняя суммы Дарбу тоже лежат в этом промежутке (так как являются точными нижней и верхней гранями). Отсюда: $|S(T) - s(T)| \le \dfrac{2\varepsilon}{3} < \varepsilon$.
+
+($\Leftarrow$) Пусть $\forall \varepsilon > 0 \exists T$ - разбиение сегмента $[a,b]$, такое что $|S(T)-s(T)| < \varepsilon$. Так как $s(T) \le \underline{I} \le \overline{I} \le S(T)$, то $\overline{I} - \underline{I} < \varepsilon$. $\varepsilon$ - произвольное, $\Rightarrow I = \overline{I} = \underline{I}$.
+Для $\forall$ размеченного разбиения $V$ сегмента $[a,b], \Delta_V < \delta$, выполнено: $S(T(V)) - s(T(V)) < \varepsilon$. 
+
+Так как $s(T(V)) \le \sigma(V) \le S(T(V))$ и $s(T(V)) \le I \le S(T(V))$, то $|I - \sigma(V)| < \varepsilon$ для любого размеченного разбиения $V$ сегмента $[a,b]$. Мы доказали, что $I = \lim\limits_{\Delta_V \to 0}\sigma(V)$. Это означает, что функция $f(x)$ интегрируема на сегменте $[a,b]$ и $I = \int\limits_a^b f(x)dx$
+
+\end{proof}
+
+
+
+\textbf{Свойства определённого интеграла:}
+\begin{enumerate}
+    \item $\int\limits_a^a f(x)dx = 0$
+    \item $\int\limits_a^b f(x)dx = -\int\limits_b^a f(x)dx$
+    \item $\mathLet ~ f(x)$ и $g(x)$ интегрируемы на $[a,b]$. Тогда $f(x) + g(x)$, $f(x) - g(x)$ и $f(x) \cdot g(x)$ также интегрируемы на $[a,b]$, причём $\int\limits_a^b [f(x) \pm g(x)]dx = \int\limits_a^b f(x)dx \pm \int\limits_a^b g(x)dx$
+    \item Если $f(x)$ интегрируема на $[a, b]$, то $cf(x)$ $(c=const)$ тоже: $\int\limits_a^b cf(x)dx = c\int\limits_a^b f(x)dx$
+    \item Если $f(x)$ интегрируема на $[a, b]$, то $|f(x)|$ тоже.
+    \item $\mathLet ~ f(x)$ интегрируема на $[a, b]$. Тогда $f(x)$ интегрируема на $\forall [c, d] \subset [a, b]$
+    \item $\mathLet ~ f(x)$ интегрируема на сегментах $[a, c]$ и $[c, b]$. Тогда $f(x)$ интегрируема на $[a, b]$, причём $\int\limits_a^b f(x)dx = \int\limits_a^c f(x)dx + \int\limits_c^b f(x)dx$
+\end{enumerate}
+
+\textbf{Основная формула интегрального исчисления.}
+
+\textbf{Первообразной} функции $f(x)$ называется дифференцируемая функция $F(x):~F'(x)=f(x)$ на всей области определения $f(x)$.
+
+\textbf{Теорема.} $\mathLet ~ f \in \mathcal{R}[a, b], ~ F \in \mathcal{C}[a, b], ~ \forall x \in [a, b] ~ F'(x) = f(x).$ Тогда $\int_a^b f(x)dx = F(b) - F(a) = F(X)\bigg|_a^b$
+    
+\begin{proof}
+${x_k} - \forall$ разбиение, $F(b) - F(a) = (F(b) - F(x_{k-1})) + (F(x_{k-1}) - F(x_{k-2})) + ... + (F(x_1) - F(a)) = \dots $ 
+$\left\{ \right.$F удовлетворяет всем условиям теоремы Лагранжа (непрерывна на $[ \ ]$ и дифф-ма на $( \ )$)$\left. \right\}$
+$ \dots = f(\xi_1)(b-x_{k-1}) + f(\xi_2)(x_{k-1}-x_{k-2})+ ... +f(\xi_k)(x_1-a) \rightarrow \int_a^b f(x)dx$ при $\Delta \rightarrow 0$
+\end{proof}
+
+
+
+% -------- source --------
+\bigbreak
+[\cite[page 14-23]{SadovnichayaOprIntegral}]

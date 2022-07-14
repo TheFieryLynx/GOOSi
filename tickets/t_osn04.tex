@@ -1,0 +1,104 @@
+\textbf{\LARGE osn 4. Числовые ряды. Абсолютная и условная сходимость. Признаки сходимости: Даламбера, интегральный, Лейбница.}
+
+\textbf{Определения.}
+\begin{itemize}
+    \item Рассмотрим произвольную числовую последовательность $u_1,u_2,\dots,u_k,\dots$ и формально
+    образуем из её элементов бесконечную сумму вида
+    $u_1 +u_2 +\dots+u_k +\dots= \displaystyle \sum_{k=1}^{\infty}u_k$, называемую \textbf{числовым рядом}.
+    Отдельные слагаемые $u_k$ называются \textbf{членами ряда}.
+    Сумма первых $n$ членов ряда называется $n$-й \textbf{частичной суммой} ряда и обозначается $S_n$.
+    Т.е. $S_n =u_1 +u_2 +\dots+u_n = \displaystyle \sum_{k=1}^n u_k$.
+    \item Ряд называется \textbf{сходящимся}, если сходится последовательность $\{S_n\}$ частичных сумм этого ряда.
+    При этом предел $S$ указанной последовательности $\{S_n\}$ называется \textbf{суммой ряда}.
+    
+    \item Ряд $\displaystyle \sum_{k=1}^{\infty}u_k$ называется \textbf{абсолютно сходящимся}, если ряд $\displaystyle \sum_{k=1}^{\infty}|u_k|$ также сходится.
+
+    \item Ряд $\displaystyle \sum_{k=1}^{\infty}u_k$ называется \textbf{условно сходящимся}, если сам он сходится, а $\displaystyle \sum_{k=1}^{\infty}|u_k|$ расходится.
+\end{itemize}
+
+\textbf{Теоремы:}
+
+\textbf{Критерий Коши} Ряд $\displaystyle \sum_{k=1}^n u_k$ сходится $\iff \forall \varepsilon > 0$ $\exists N$ $\forall n \geq N$ $ \forall p \in \mathbb{N} : \displaystyle \left|\sum_{k=n+1}^{n+p} u_k\right| < \varepsilon$.
+
+\begin{proof}
+    Обычный критерий Коши для последовательностей, с посл-ю частичных сумм: $|S_{n+p} - S_n| < \varepsilon$.
+\end{proof}
+
+Следствие: \textbf{Необходимое условие сходимости ряда:} $\lim_{k\rightarrow\infty} u_k=0$.
+
+\begin{proof}
+    Критерий Коши при $p = 1$.
+\end{proof}
+
+\bigbreak
+\textbf{Признак Даламбера.}
+Рассмотрим ряд $\displaystyle \sum_{k=1}^{\infty}p_k$,~$p_k > 0~\forall k \geqslant k_0 \geqslant 1$.
+
+\textbf{П. I:} Если для всех номеров $k$, по крайней мере начиная с некоторого номера, справедливо неравенство
+$\frac{p_{k+1}}{p_k} \leqslant q < 1 ~ \left( \frac{p_{k+1}}{p_k} \geqslant 1 \right)$,
+то ряд $\displaystyle \sum_{k=1}^{\infty}p_k$ сходится (расходится).
+    
+\begin{proof}
+Если $\frac{p_{k+1}}{p_k} \geqslant 1$, то $p_{k+1} \geqslant p_k$, а значит $\lim_{k\rightarrow\infty} u_k \neq 0$,
+не выполнено необходимое условие сходимости ряда и ряд расходится.
+
+Рассмотрим ряд из элементов геом. прогрессии: 
+
+$\sum_{k=1}^{\infty} q^k = q + q^2 + \dots + \dots = \frac{1}{1-q}, \ |q| < 1$.
+
+Если $\frac{p_{k+1}}{p_k} \leqslant q = \frac{q^{k+1}}{q^k}$, то ряд $\displaystyle \sum_{k=1}^{\infty}p_k$ сходится по признаку сравнения,
+так как сходится ряд $\displaystyle \sum_{k=1}^{\infty}q_k$.
+\end{proof}
+
+\textbf{П. II:} Если $\exists$ предел $\displaystyle\lim_{k\rightarrow\infty}\frac{p_{k+1}}{p_k} = L$,
+то ряд сходится при $L < 1$ и расходится при $L > 1$ (для $L=1$ признак не работает).
+
+
+\begin{proof}
+$\forall \varepsilon > 0$ $\exists N$ $\forall k \geq N : L - \varepsilon < \frac{p_{k+1}}{p_k} < L + \varepsilon$.
+Выберем $\varepsilon = \frac{1}{2} |L-1|$.
+
+Если $L < 1$, то $\frac{p_{k+1}}{p_k} < 0.5L + 0.5 = q < 1$, свели к 1 части, сходится.
+
+Если $L > 1$, то $\frac{p_{k+1}}{p_k} > 0.5L + 0.5 > 1$, свели к 1 части, расходится.
+\end{proof}
+
+\bigbreak
+\textbf{Интегральный признак Коши-Маклорена}.
+Пусть при $x \geqslant 1$ функция $f(x) \geq 0$ и не возрастает.
+Тогда ряд $\displaystyle \sum_{k=1}^{\infty}f(k)$ сходится или расходится одновременно с несобственным интегралом
+$\int\limits_{1}^{\infty}f(x)dx$.
+
+\begin{proof}
+$\forall k \in \mathbb{N}$ $\forall x \in [k, k + 1]$, то $f(k) \geq f(x) \geq f(k+1) $
+$\implies f(k) \geq \int_k^{k+1}f(x)dx \geq f(k+1), ~ k = 1, \dots, n-1, ~ (n \geq 2)$
+
+$f(1) + f(2) + \dots + f(n-1) \geq \int\limits_1^n f(x)dx \geq f(2) + \dots + f(n)$
+
+$S_n - p_1 \leq \int_1^n f(x)dx \leq S_{n-1}$
+
+Если $\int_1^{+\infty} f(x)dx$ сходится, то $\int_1^n f(x)dx \leq M \implies S_n \leq M + p_1 \implies$ сходится 
+
+Если $\int_1^{+\infty} f(x)dx$ расходится, то $\{f(x) \geq 0\} \int_1^n f(x)dx \rightarrow +\infty \implies S_{n-1} \rightarrow +\infty \implies$ расходится
+\end{proof}
+
+\bigbreak
+\textbf{Признак Лейбница.}
+Пусть последовательность $\{u_k\},~u_k>0~\forall k\in \mathbb{N}$ является невозрастающей и бесконечно малой.
+Тогда знакочередующийся ряд $\displaystyle \sum_{k=1}^{\infty} (-1)^k u_k$ сходится.
+
+\begin{proof}
+$S_{2n} = (u_1 - u_2) + (u_3 - u_4) + \dots + (u_{2n-1} - u_{2n}) = (>0) + (>0) + \dots + (>0)$. Поэтому в силу
+невозрастания последовательности $\{u_k\}$ последовательность $\{S_{2n}\}$ не убывает.
+С другой стороны, ${S_{2n}} = u_1 - (u_2 - u_3) - \dots - (u_{2n-2} - u_{2n-1}) - u_{2n} = u_1 - (>0) - \dots - (>0) - u_{2n}$. Поэтому в силу
+невозрастания последовательности $\{u_k\}$ и того, что $u_{2n} \geqslant 0$, последовательность
+$\{S_{2n}\}$ ограничена сверху числом $u_1$. Следовательно, $\{S_{2n}\}$ сходится к некоторому
+числу $S$. Но из того, что $S_{2n-1} = S_{2n} - u_{2n}$ и $\displaystyle \lim_{n\to \infty} u_{2n} = 0$ (из необх. условий сходимости), вытекает сходимость при $n\rightarrow\infty$
+последовательности ${S_{2n-1}}$ к тому же $S$.
+\end{proof}
+
+
+
+% -------- source --------
+\bigbreak
+[\cite[page 7-22]{ilin_matan}]

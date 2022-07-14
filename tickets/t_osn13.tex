@@ -1,0 +1,108 @@
+\textbf{\LARGE osn 13. Линейный оператор в конечномерном пространстве, его матрица. Норма линейного оператора.}
+
+
+\textbf{Полем} называется множество $F$ с введенными на нем алгебраическими операциями сложения и умножения, а также если выполнены следующие аксиомы:
+\begin{itemize}
+    \item Коммутативность сложения: $\forall a,b \in F$ $a + b = b + a$
+    \item Ассоциативность сложения: $\forall a,b,c \in F$ $(a + b) + c = a + (b + c)$
+    \item Существование нулевого элемента: $\exists 0 \in F: \forall a \in F$ $a + 0 = 0$
+    \item Существование противоположного элемента: $\forall a \in F \exists (-a) \in F: a + (-a) = 0$
+    \item Коммутативность умножения: $\forall a, b \in F: a * b = b * a$
+    \item Ассоциативность умножения: $\forall a,b,c \in F$ $(a * b) * c = a * (b * c)$
+    \item Существование единичного элемента: $\exists e \in F\\ \{0\}: \forall a \in F$ $a * e = a$ 
+    \item Существование обратного элемента для ненулевых элементов: $ (\forall a \in F: a \neq 0) \exists a^{-1} \in F: a * a^{-1} = e$
+    \item Дистрибутивность умножения относительно сложения: $\forall a,b,c \in F$ $(a + b) *c = a * c + b * c$
+\end{itemize}
+
+
+\faEye \ множество $V$ элементов $x, y, z\dots$ и поле $P$ действительных или комплексных чисел. \mathLet \ в $V$ введены две операции: сложение его элементов и умножение его элементов на числа из $P$. 
+Т.е $\forall x,y \in V$ определён элемент $z = x+y \in V$, а $\forall x \in V, ~ \forall \lambda \in P$ определён элемент $y = \lambda \cdot x \in  V$. \mathLet \ введённые две операции удовлетворяют \textbf{следующим аксиомам}:
+\begin{enumerate}
+    \item $x+y=y+x$;
+    \item $(x+y)+z=x+(y+z)$;
+    \item $\exists \theta\in V$, что $\forall x\in V \implies x+\theta=x$ ;
+    \item $\forall x \in V ~ \exists (-x) \in V$, что $x + (-x) = \theta$;
+    \item $1 \cdot x = x,~1 \in P$;
+    \item $\lambda \cdot(x+y)=\lambda \cdot x+\lambda \cdot y,~\lambda \in P$;
+    \item $(\lambda +\mu)\cdot x=\lambda \cdot x+\mu \cdot x,~\lambda,\mu \in P$;
+    \item $(\lambda \mu )\cdot x = \lambda (\mu \cdot x)$.
+\end{enumerate}
+Тогда V называется \textbf{линейным пространством} над полем P.
+
+Если P --- поле действительных чисел, то V --- \textbf{действительное линейное пространство}.
+
+Если P --- поле комплексных чисел, то V --- \textbf{комплексное линейное пространство}.
+
+Максимальное число линейно независимых векторов пространства V называется его \textbf{размерностью}. Если размерность пространства $V$ конечна, то оно называется \textbf{конечномерным}.
+
+\mathLet \ даны 2 линейных пространства $V$ и W над общим полем $P$. Отображение $A :~V \to W$ называется \textbf{линейным отображением (линейным оператором)}, если для $\forall x, y \in V,~\alpha \in P$ выполнены равенства:
+\begin{enumerate}
+    \item $A(x + y) = A(x) + A(y)$;
+    \item $A(\alpha x) = \alpha A(x)$;
+\end{enumerate}
+
+$\mathcal{L}(V, W)$ --- множество всех линейных операторов действующих из V в W.
+
+\textbf{Простейшие свойства}.
+\begin{enumerate}
+    \item \textit{Линейный оператор переводит нулевой вектор в нулевой вектор}, так как $\mathcal{A}\theta_1 = \mathcal{A}(0x) = 0\mathcal{A}x = \theta_2$ (здесь $\theta_1,\theta_2$ - нулевые векторы пространств V и W соответственно)
+    \item \textit{Линейный оператор сохраняет линейные комбинации}, т.е. переводит линейную комбиниацию векторов в линейную комбинацию образов с теми же коэффициентами: $\mathcal{A} \left( \sum_{i=1}^{k}\alpha_ix_i \right) = \sum_{i=1}^{k}\alpha_i\mathcal{A}x_i$
+    \item \textit{Линейный оператор сохраняет линейную зависимость}, т.е. переводит линейно зависимую систему векторов в линейно зависимую.
+\end{enumerate}
+
+\textbf{Теорема.} $\mathLet ~ e_1, e_2,\dots,e_n$ --- базис пространства $V$, a $g_1,g_2,\dots,g_n$ --- любые векторы пространства $W$. Тогда существует единственный линейный оператор $A:~V \to W$, который переводит векторы $e_1, e_2,\dots,e_n$ в векторы $g_1,g_2,\dots,g_n$ соответственно.
+
+\begin{proof} Строим оператор по правилу: если $x = \sum_{i=1}^{n} x_ie_i \in  V$, то $Ax = \sum_{i=1}^{n}x_iAe_i$. Из единственности разложения вектора по базису следует, что правило однозначно определяет образ $x$, при этом $Ae_i = g_i$. Линейность оператора вытекает из линейности координат. Если $B$ --- любой другой оператор, удовлетворяющий условию теоремы, то $Bx = \sum_{i=1}^{n} B(x_ie_i) = \sum_{i=1}^{n} x_ig_i = Ax \implies A$ единственен.
+\end{proof}
+
+\textbf{Матрица линейного оператора.}
+
+$\mathLet ~ e_1, e_2,\dots,e_n$ и $f_1, f_2,\dots,f_m$ --- базисы конечномерных пространств $V$ и $W$. Линейный оператор $A:~V \to W$ однозначно определяется заданием векторов $Ae_1,\dots, Ae_n$. В свою очередь $Ae_i$ однозначно определяются своими координатами в базисе $f$:
+
+$\begin{cases}
+     Ae_1 = a_{11}f_1 + \dots + a_{m1}f_m&\\
+     Ae_2 = a_{12}f_1 + \dots + a_{m2}f_m&\\
+     \dots&\\
+     Ae_n = a_{1n}f_1 + \dots + a_{mn}f_m&\\
+\end{cases}$
+
+$A_{fe} = \begin{pmatrix}a_{11} & \dots & a_{1n} \\ & \dots & \\ a_{m1} & \dots & a_{mn} \end{pmatrix}$ называется \textbf{матрицей оператора} $A$ в паре базисов $e$ и $f$.
+
+$\mathLet ~ V$ --- линейное пространство над полем $P$.
+\textbf{Нормой} в линейном пространстве V называется отображение $\|\cdot\|:~V \to R$, ставящее в соответствие каждому вектору $x \in V$ действительное число $\|x\| \in R$ и удовлетворяет аксиомам: $\forall x, y \in V, \alpha \in P$
+\begin{enumerate}
+    \item $\|x\| \geqslant 0$, причём норма равна нулю только если $x = 0$;
+    \item $\|\alpha x\| = |\alpha| \cdot \|x\|$;
+    \item $\|x + y\| \leqslant \|x\| + \|y\|$.
+\end{enumerate}
+
+Линейное пространство $V$ с заданной на нём нормой $\| \cdot \|$ называется \textbf{линейным нормированным пространством.} Число $\|x\|$ называется нормой вектора $x$.
+
+$\mathLet ~ V, ~W$ --- линейные нормированные пространства с нормами $\| \cdot \|_V$ и $\| \cdot \|_W$. 
+$\mathLet ~ \mathcal{L}(V, W)$ --- линейное пространство операторов, в котором можно ввести норму со следующими ограничениями $\forall \mathcal{A} \in \mathcal{L}(V, W)$:
+\begin{itemize}
+    \item \textbf{согласованность} с векторными нормами  $\| \cdot \|_V$ и $\| \cdot \|_W$: $\| \mathcal{A}x \|_W \leqslant \| \mathcal{A} \| \cdot \| x \|_V,~\forall x \in V$.
+    \item \textbf{мультипликативность}: $\|\mathcal{A}\mathcal{B}\| \leqslant \| \mathcal{A}\|\cdot\|\mathcal{B}\|,~\forall\mathcal{A},\mathcal{B}$, для которых определено произведение $\mathcal{A}\mathcal{B}$.
+\end{itemize}
+
+\textbf{Теорема}. Собственное значение линейного оператора $\mathcal{A}\in\mathcal{L}(V,V)$ не превосходит по абсолютной величине любую его согласованную норму $\|\mathcal{A}\|$.
+
+\begin{proof}
+Если $\mathcal{A}x=\lambda x$, то для любой согласованной нормы оператора имеем $\| \mathcal{A}x \| = |\lambda| \cdot \| x \|$ и $\| \mathcal{A}x \| \leqslant \| \mathcal{A} \| \cdot \| x \|$, откуда следует, что $|\lambda| \leqslant \| \mathcal{A} \|$
+\end{proof}
+
+\textbf{Примеры операторных норм:}
+\begin{itemize}
+    \item $\mu(\mathcal{A}) = \displaystyle\sup_{\|x\|_V=1}\|\mathcal{A}x\|_W$ --- норма, \textbf{подчинённая} нормам $\| \cdot \|_V$ и $\| \cdot \|_W$, наименьшая из всех согласованных норм.
+    \item $\|\mathcal{A}\|_2 = \displaystyle\sup_{\|x\|_V=1} \sqrt{(\mathcal{A}x,\mathcal{A}x)}$ --- \textbf{спектральная норма}, равная максимальному сингулярному числу (или максимальному по модулю собственному значению в случае нормального оператора).
+    \item $\|\mathcal{A}\|_1 = \displaystyle\max_{1\leqslant j\leqslant n} \displaystyle\sum_{i=1}^{m}|a_{ij}|$ --- \textbf{максимальная столбцовая сумма}.
+    \item $\|\mathcal{A}\|_{\infty} = \displaystyle\max_{1\leqslant i\leqslant m} \displaystyle\sum_{j=1}^{n}|a_{ij}|$ --- \textbf{максимальная строчная сумма}.
+    \item $\|\mathcal{A}\|_E = \sqrt{\displaystyle\sum_{i,j}|a_{ij}|^2}$ --- \textbf{евклидова норма оператора.}
+\end{itemize}
+
+
+
+
+% -------- source --------
+\bigbreak
+[\cite[page 240-241, 352-353]{kim}]

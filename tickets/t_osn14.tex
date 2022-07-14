@@ -1,0 +1,172 @@
+\textbf{\LARGE osn 14. Ортогональные преобразования евклидова пространства. Ортогональные матрицы и их свойства.}
+
+Базисом линейного пространства называется упорядоченная линейно независимая система векторов пространства, через которую линейно выражается любой вектор пространства. 
+
+Ортонормированным базисом называется
+базис, векторы которого имеют единичную длину и в случае n>1 попарно перпендикулярны. 
+
+\textbf{Ортогональные матрицы и их свойства.}
+\begin{itemize}
+    \item Матрица $Q \in \mathcal{C}^{n \times n}$ называется \textbf{унитарной}, если \newline $QQ^H = Q^HQ=I$
+    \item Матрица $Q \in \mathcal{R}^{n \times n}$ называется \textbf{ортогональной}, если \newline $QQ^T = Q^TQ=I$
+ 
+\end{itemize}   
+
+$Q^H$ -- \textit{эрмитова-сопряженная матрица}: $q_{ji} = \overline{q}_{ij}$   \newline
+$Q^T$ -- \textit{транспонированная матрица}: $q_{ij} = q_{ji}$
+
+\textbf{Свойства ортогональной матрицы:}
+    \begin{enumerate}
+        \item $Q$ --- обратима, причём $Q^{-1}=Q^T$;
+        
+        \begin{proof}
+        $\left|Q^T\right|=\left|Q\right| \implies \left|Q\right|^2 = 1 \implies \left|Q\right| \neq 0 \implies \exists Q^{-1}, Q^TQ=I \implies$ \{домн. справа на $Q^{-1}$ \} $\implies Q^T=Q^{-1}$
+        \end{proof}
+        
+        \item $det(Q) = \pm1$;
+        
+        \begin{proof}
+        $\left|Q^T\right|=\left|Q\right| \implies \left|Q\right|^2 = 1 \implies \left|Q\right| = \pm 1$
+        \end{proof}
+        
+        \item $\forall \lambda$ --- собственное значение $Q\implies \lambda=\pm1$.
+        \begin{proof}
+        Пусть $Qx=\lambda x$ тогда $(x,x)=(x,Q^TQx) = (Qx,Qx) = (\lambda x,\lambda x) = \lambda^2(x,x) \Rightarrow (x,x) = \lambda^2(x,x) \Rightarrow \lambda^2 = 1$
+
+        %$Qx=\lambda x, Q^Tx=\lambda x \implies Q^TQx=\lambda^2x=Ix \implies (\lambda^2 - 1) = \theta \implies %\lambda = \pm1$
+        \end{proof}
+    \end{enumerate}
+ 
+Линейный оператор $\mathcal{U}$, действующий в унитарном (евклидомов) пространстве, называется \textbf{унитарным} (\textbf{ортогональным}) оператором, если $\mathcal{U}^*\mathcal{U} = \mathcal{U}\mathcal{U}^* = \mathcal{I}$
+\begin{itemize}
+\item Оператор $\mathcal{U}$ унитарен (ортогонален) $\iff$ в любом ортонормироавнном базисе он имеет унитарную (ортогональную) матрицу.
+\item Для унитарного (ортогонального) оператора $\mathcal{U}$ справедливы равенства: \newline
+$\mathcal{U}^* = \mathcal{U}^{-1}$, $|det\mathcal{U}| = 1$.
+\item Унитарный (ортогональный) оператор нормален.
+\end{itemize}
+
+\textbf{Критерий унитарности}. В конечномерном унитарном (евклидовом) пространстве $\mathcal{V}$ следующие утверждения равносильны:
+\begin{itemize}
+\item Оператор $\mathcal{U}$ унитарен (ортогонален)
+\item $\mathcal{U}^*\mathcal{U}$ = $\mathcal{I}$
+\item $\mathcal{U}\mathcal{U}^*$ = $\mathcal{I}$
+\item оператор $\mathcal{U}$ изометричен
+\item оператор $\mathcal{U}$ сохраняет длину, т.е. $|\mathcal{U}x| = |x|, \forall x \in \mathcal{V}$
+\item оператор $\mathcal{U}$ переводит любой ортонормированный базис $\mathcal{V}$ в ортонормированный базис
+\item оператор $\mathcal{U}$ переводит хотя бы один ортонормированный базис $\mathcal{V}$ в ортонормированный базис
+\end{itemize}
+
+\begin{proof}
+\begin{itemize}
+\item $(1\Leftrightarrow 2)$ $(\implies)$ очевидно \\ $(\impliedby)$ $UU^*=I \implies \exists U^{-1}, UU^*=I$ \{домн. слева на $U^-1$\} $\implies U^*=U^{-1} \implies U^*U=I$ \\
+\item $(1\Leftrightarrow 3)$ аналогично \\
+\item $(3\Leftrightarrow 4)$ $(\implies)$ $(Ux, Uy)=(x,UU^*y)=(x,y)$ \\ $(\impliedby)$ $(Ux,Uy)=(x,y) \implies (x,UU^*y)=(x,Iy) \implies UU^*=I$ \\
+\item $(4\Leftrightarrow 5)$ $(\implies)$ очевидно, т.к. $\left|x\right|=\sqrt{(x,x)}$ \\ $(\impliedby)$ a). $V$ -- евкл.: $(x,y)=(\left|x+y\right|^2-\left|x\right|^2-\left|y\right|^2)/2$ б). $V$ -- унит.: $(x,y)=(\left|x+y\right|^2-\left|x-y\right|^2+i\left|x+iy\right|^2-i\left|x-iy\right|^2)/2$ \\
+\item $(4\Leftrightarrow 5)$ $(\implies)$ $e$ -- о/н $\implies (Ue_i,Ue_j)=(e_i,e_j)=\delta_{ij}$ \\ $(\impliedby)$ Пусть $e_1, \dots, e_n$ -- о/н. $\forall x \in V: x = \sum x_ie_i, Ux = \sum x_iUe_i \implies \left|x\right|^2 = \sum \left|x_i\right|^2, \left|Ux\right|^2 = \sum \left|x_i\right|^2 \implies U$ сохр. длину \\
+\item $(6\Leftrightarrow 7)$ $(\implies)$ очевидно \\ $(\impliedby)$ доказано в предыдущем пункте $(\impliedby)$ \\
+\end{itemize}
+\end{proof}
+
+\textbf{Примеры ортогональных матриц.}
+\begin{itemize}
+    \item $Q \in \mathbb{R}^{1\times1} \implies Q = \begin{bmatrix} \pm1\\ \end{bmatrix}$
+    
+    \item $Q \in \mathbb{R}^{2\times2} \implies 
+    Q = \begin{bmatrix} 
+        q_{11} & q_{12} \\
+        q_{21} & q_{22} \\
+    \end{bmatrix}$
+    
+    $QQ^T=Q^TQ=I \implies 
+    \begin{cases}
+    q_{11}^2 + q_{21}^2 = 1&\\
+    q_{11}q_{12} + q_{21}q_{22} = 0&\\
+    q_{12}^2 + q_{22}^2 = 1&\\
+    \end{cases}
+    \implies 
+    \begin{cases}
+    q_{11} = \cos\varphi&\\
+    q_{21} = \sin\varphi&\\
+    q_{12} = -kq_{21} = -k\sin\varphi&\\
+    q_{22} = kq_{11} = k\cos\varphi&\\
+    \end{cases}$
+    
+    \begin{enumerate}
+        \item $k=1 \implies 
+            Q = \begin{bmatrix} 
+                \cos\varphi & -\sin\varphi \\
+                \sin\varphi & \cos\varphi \\
+            \end{bmatrix}$ (поворот).
+            
+        При $\varphi = \pi k$ получаются матрицы 
+            $\begin{bmatrix} 
+                1 & 0 \\
+                0 & 1 \\
+            \end{bmatrix}$, 
+            $\begin{bmatrix} 
+                -1 & 0 \\
+                 0 & -1 \\
+            \end{bmatrix}$.
+            
+        При $\varphi \ne \pi k$ матрица не диагонализируется, так как у неё нет вещественных собственных значений.
+            
+        \item $k=-1 \implies 
+            Q = \begin{bmatrix} 
+                \cos\varphi & \sin\varphi \\
+                \sin\varphi & -\cos\varphi \\
+            \end{bmatrix}$ (поворот и отражение).
+        
+        В этом случае собственные значения матрицы равны $\pm1 \implies$ 
+        
+        получаются матрицы 
+        $\begin{bmatrix} 
+            1 & 0 \\
+            0 & -1 \\
+        \end{bmatrix}$, 
+        $\begin{bmatrix} 
+            -1 & 0 \\
+            0 & 1 \\
+        \end{bmatrix}$.
+    \end{enumerate}
+    Таким образом, в случае $Q \in \mathbb{R}^{2\times2}$ для ортогонального оператора в евклидовом пространстве существует ортонормированный базис, в котором он имеет матрицу 
+    
+    либо 
+    $\begin{bmatrix} 
+        \pm1 & 0 \\
+        0 & \pm1 \\
+    \end{bmatrix}$, 
+    
+    либо 
+    $\begin{bmatrix} 
+        \cos\varphi & -\sin\varphi \\
+        \sin\varphi & \cos\varphi \\
+    \end{bmatrix},~(\varphi\ne\pi k)$.
+\end{itemize}
+
+\textbf{Теорема.} $\forall$ ортогонального оператора $Q$ в евклидовом пространстве $\exists$ ортонормированный базис $e$, в котором матрица оператора имеет вид:
+
+$$ Q = \begin{bmatrix} 
+            1 &    &   &   &   &   &   &   &   &   \\
+              & \ddots  &  &   &   &   &   &   &   &   \\
+              &  & 1  &    &   &   &   &   &   &   \\
+              &   &   & -1 &   &   &   &   &   &   \\
+              &   &   &  & \ddots &   &   &   &   \\
+              &   &   &   &   & -1 &   &   &   &   \\
+              &   &   &   &   &   & \cos\varphi_1 & -\sin\varphi_1 &  \\
+              &   &   &   &   &   & \sin\varphi_1 & \cos\varphi_1 &  \\
+              &   &   &   &   &   &   &   & \ddots\\
+        \end{bmatrix} $$
+
+\begin{proof} Доказательство методом математической индукции по размерности пространства $dim(V)=n$.
+
+Для $n=1,~n=2$ теорема верна (выше рассмотрены все возможные случаи).
+
+Пусть теорема верна для $n-1,~n-2$. Докажем для $n$. 
+
+$Q$ действует в вещественном пространстве, а в нём существует либо одномерное, либо двумерное инвариантное подпространство $L$ ($\forall x \in L~Qx \in L$), для него можно найти базис. По свойствам ортогонального оператора $L^{\perp}$ (ортогональное подпространство) --- инвариантно относительно $Q$. $dim(L^{\perp})$ равна либо $n-1$, либо $n-2 \implies$ теорема для него верна. Совокупность базисов для $L$ и $L^{\perp}$ образует искомый базис с точностью до порядка базисных векторов.
+\end{proof}
+
+
+% -------- source --------
+\bigbreak
+[\cite[page 230-233, 292-295]{kim}]

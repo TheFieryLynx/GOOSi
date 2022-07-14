@@ -1,0 +1,161 @@
+% БОЛЬШАЯ КНИЖНАЯ ВЕРСИЯ
+
+\documentclass[oneside,final,8pt,]{extreport}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{csquotes}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{makecell}  % для переноса строк в таблицах
+\usepackage[backend=biber, style=authortitle]{biblatex}  % для ссылок на литературу
+\addbibresource{references.bib}
+
+\usepackage{hyperref}  % для ссылок и цвета цитирований
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=magenta,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\setpapersize{A5}  % for big versiom -- A4, for small -- A2
+\setmarginsrb{1cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
+\usepackage{indentfirst}
+\sloppy
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\setlength{\columnseprule}{1pt}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+% \newcommand{\todo}[1]{\textcolor{red}{#1}}
+\newcommand{\todo}[1]{\colorbox{red}{#1}}
+
+\newenvironment{proof}  % док-во теорем
+    {$\blacktriangle$}  % without '$' does not work
+    {$\blacksquare$}
+    
+\newcommand{\mathLet}{\scalebox{1.}[1.5]{$\sqsupset$}}  % math symbol 'let'
+
+\usepackage{fontawesome}  % to import '\faEye' -- math symbol 'eye'
+% \newcommand{\maeye}{\scalebox{2.}{\faEye}}  % math symbol 'eye', very big
+
+\usepackage{pst-optic}
+\usepackage{graphicx}
+\newcommand*\latseye{%
+       \scalebox{0.25}{\begin{pspicture}(-1,-1)(1,1)
+\rput(1,-.5){\eye}
+\end{pspicture}\kern1em}}
+
+\newcommand*\latdeye{%
+       \reflectbox{\scalebox{0.25}{\begin{pspicture}(-1,-1)(1,1)
+\rput(1,-.5){\eye}
+\end{pspicture}\kern.2em}}}
+
+\everymath{\displaystyle}
+\setlength\parindent{0pt}
+
+% \setlength{\leftmargini}{10pt}  % чтоб отступы в итемайзах были поменьше 
+
+\newlist{itemize2}{enumerate}{1}
+\setlist[itemize2,1]{label = $\bullet$, leftmargin=0em, itemindent = 1.2em}
+
+\renewenvironment{itemize}
+{\begin{itemize2}}
+{\end{itemize2}}
+
+\begin{document}
+
+\include{tickets/titul}
+% -------------------------------------------- OSN -
+
+
+\include{tickets/t_osn01}
+\include{tickets/t_osn02}
+\include{tickets/t_osn03}
+\include{tickets/t_osn04}
+\include{tickets/t_osn05}
+\include{tickets/t_osn06}
+\include{tickets/t_osn07}
+\include{tickets/t_osn08}
+\include{tickets/t_osn09}
+\include{tickets/t_osn10}
+\include{tickets/t_osn11}
+\include{tickets/t_osn12}
+\include{tickets/t_osn13}
+\include{tickets/t_osn14}     
+\include{tickets/t_osn15}
+\include{tickets/t_osn16}
+\include{tickets/t_osn17}
+\include{tickets/t_osn18}  
+\include{tickets/t_osn19}
+\include{tickets/t_osn20}
+\include{tickets/t_osn21}
+\include{tickets/t_osn22}
+\include{tickets/t_osn23}
+\include{tickets/t_osn24}
+\include{tickets/t_osn25}
+\include{tickets/t_osn26}
+\include{tickets/t_osn27}
+\include{tickets/t_osn28}
+\include{tickets/t_osn29}
+\include{tickets/t_osn30}
+\include{tickets/t_osn31}
+\include{tickets/t_osn32}
+\include{tickets/t_osn33}
+\include{tickets/anekdoty}
+
+% -------------------------------------------- DOP -
+
+\include{tickets/t_dop01}
+\include{tickets/t_dop02}
+\include{tickets/t_dop03}
+\include{tickets/t_dop04}
+\include{tickets/t_dop05}
+\include{tickets/t_dop06}
+\include{tickets/t_dop07}
+\include{tickets/t_dop08}
+\include{tickets/t_dop09}
+\include{tickets/t_dop10}
+\include{tickets/t_dop11}
+\include{tickets/t_dop12}
+\include{tickets/t_dop13}
+\include{tickets/t_dop14}
+\include{tickets/t_dop15}
+\include{tickets/t_dop16}
+\include{tickets/t_dop17}
+\include{tickets/t_dop18}
+\include{tickets/t_dop19}
+\include{tickets/t_dop20}
+\include{tickets/t_dop21}
+\include{tickets/t_dop22}
+\include{tickets/t_dop23}
+\include{tickets/t_dop24} 
+\include{tickets/t_dop25}
+\include{tickets/t_dop26}
+\include{tickets/t_dop27}
+\include{tickets/t_dop28}
+\include{tickets/t_dop29}
+
+
+
+
+% --- BEGIN OF ADDITIONAL PAGE ----
+\newpage  
+\printbibliography
+% --- END OF ADDITIONAL PAGE ---
+
+
+\end{document}

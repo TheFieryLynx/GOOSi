@@ -1,0 +1,81 @@
+\textbf{\LARGE osn 29. Квадратурные формулы прямоугольников, трапеций и парабол.}
+
+\textbf{Задача:} Вычислить определенный интеграл $I = \int\limits_a^b f(x)dx$.
+
+Не всегда можно посчитать аналитически, но есть универсальные алгоритмы -- формулы численного интегрирования (квадратурные формулы). 
+В них интеграл заменяется конечной суммой:
+
+$ \int\limits_a^b f(x)dx \approx\displaystyle\sum_{k=0}^N C_k f(x_k)$ --- \textbf{квадратурная формула}, 
+$C_k$ --- \textbf{коэффициенты квадратурной формулы}, 
+$x_k \in [a, b]$ --- \textbf{узлы квадратурной формулы}.
+
+$\psi = \int\limits_a^b f(x)dx - \sum_{k=0}^N C_k f(x_k) $ --- \textbf{погрешность квадратурной формулы}. 
+
+Введем на $[a,b]$ равномерную сетку $\omega_n = \{x_i =a+ih,~i\in[0,N],~N_h=b-a \}$.
+
+$\int\limits_a^b f(x)dx = \displaystyle\sum_{i=0}^N\int\limits_{x_{i-1}}^{x_i} f(x)dx$. Строим квадратурные формулы для $\int\limits_{x_{i-1}}^{x_i} f(x)dx$.
+
+\textbf{Формула прямоугольников.}
+
+$$ \int\limits_{x_{i-1}}^{x_i} f(x)dx \sim f \left( x_{i-\frac{1}{2}} \right) h $$
+
+$\psi_i = \int\limits_{x_{i-1}}^{x_i} f(x)dx - f \left( x_{i-\frac{1}{2}} \right)h = 
+\int\limits_{x_{i-1}}^{x_i} \left( f(x) - f\left(x_{i-\frac{1}{2}} \right) \right)dx = 
+\int\limits_{x_{i-1}}^{x_i} 
+\Biggl( 
+    f(x_{i-\frac{1}{2}}) + 
+    (x - x_{i-\frac{1}{2}})f'(x_{i-\frac{1}{2}}) + 
+    \frac{\left(x - x_{i-\frac{1}{2}}\right)^2}{2}f''(\xi) 
+    \Biggr|_{\xi \in [x_{i-1};x_i]} - 
+    f(x_{i-\frac{1}{2}}) 
+\Biggr) dx$
+
+$|\psi_i| \leqslant 
+M_{2i} \int\limits_{x_{i-1}}^{x_i} \frac{ \left(x - x_{i-\frac{1}{2}} \right)^2}{2}dx = 
+\frac{h^3}{24} M_{2i}$, где $ M_{2i} = \displaystyle\max_{x\in[x_{i-1};x_i]}|f''(x)|$
+
+$\int\limits_a^b f(x)dx \sim \displaystyle\sum_{i=0}^N f(x_{i-\frac{1}{2}})h$
+
+$\psi = \displaystyle\sum_{i=0}^N \psi_i \leqslant \displaystyle\sum_{i=0}^n \frac{h^3}{24} M_{2i}\leqslant \frac{M_2Nh^3}{24} = \frac{M_2h^2(b-a)}{24} \implies \psi = O(h^2)$
+
+\textbf{Формула трапеций.}
+
+$$ \int\limits_{x_{i-1}}^{x_i} f(x)dx \sim \frac{f(x_{i-1}) +f (x_i)}{2}h $$
+получается путем замены $f(x)$ интерполяционным многочленом первой степени, построенным по узлам $x_{i-1},~x_i$.
+
+$$L_{1i} = \frac{\left((x-x_{i-1})f(x_i)-(x-x_i)f(x_{i-1})\right)}{h}$$
+
+$$f(x) - L_{1i} = \frac{( x-x_{i-1})(x-x_i )}{2}f''(\xi_i(x))$$
+
+$\left|\psi_j\right| =  \int\limits_{x_{i-1}}^{x_i} f(x)dx - \frac{f(x_{i-1}) +f (x_i)}{2}h = \int\limits_{x_{i-1}}^{x_i} (f(x) - L_{1i})dx =$ \\
+$= \int\limits_{x_{i-1}}^{x_i} \frac{(x-x_{i-1})(x-x_i)}{2}f''(\xi_i(x)) \implies |\psi_j| \leqslant \frac{M_{3j}h^3}{12}$
+
+$ \int\limits_a^b f(x)dx \sim \displaystyle\sum_{i=1}^N\frac{f(x_{i-1}) +f (x_i)}{2}h = $
+
+$ = h \left(0.5f(x_0) + f(x_1) + f (x_2) + \dots + f(x_{N-1}) + 0.5f(x_N ) \right)$
+--- составная формула трапеций. 
+
+$$|\psi| \leqslant \frac{M_3h^2(b-a)}{12} = O(h^2)$$
+
+\textbf{Формула Симпсона (парабол).}
+
+$L_n = \displaystyle\sum_{k=0}^n L_{n_k} = \displaystyle\sum_{k=0}^n \frac{\omega(x)}{(x-x_k)\omega'(x_k)}f(x_k)$
+--- интерполяционный полином в Форме Лагранжа, где
+
+$$\omega(x) = \displaystyle\prod_{j=0}^n(x-x_j),~\omega'(x_k)=\displaystyle\prod_{\substack{j=0 \\ j\neq k}}^n (x_k - x_j),~f(x) - L_n = \frac{f^{(n+1)}(\xi(x))}{(n+1)!}\omega(x)$$
+
+В формуле Симпсона:
+
+$f(x) \sim L_2 \sim \frac{(x-x_{i-\frac{1}{2}})(x-x_i)}{(x_{i-1}-x_{i-\frac{1}{2}})(x_{i-1}-x_i)}f(x_{i-1}) + \frac{(x-x_{i-1})(x-x_i)}{(x_{i-\frac{1}{2}}-x_{i-1})(x_{i-\frac{1}{2}}-x_{i-1})}f(x_{i-\frac{1}{2}}) + \frac{(x-x_{i-1})(x-x_{i-\frac{1}{2}})}{(x_i-x_{i-1})(x_i-x_{i-\frac{1}{2}})}f(x_{i}) = \frac{2}{h^2}((x-x_{i-\frac{1}{2}})(x-x_i)f(x_{i-1})-2(x-x_{i-1})(x-x_i)f(x_{i-\frac{1}{2}}) + (x-x_{i-1})(x-x_{i-\frac{1}{2}})f(x_i)),~ \forall x\in[x_{i-1},x_i]$
+
+$$\int\limits_{x_{i-1}}^{x_i} L_{2_i}(x) dx = \frac{h}{6}(f(x_{i-1}) + 4f(x_{i-\frac{1}{2}}) + f(x_i)) $$
+$$\implies \int\limits_{a}^{b} f(x) dx \approx \displaystyle\sum_{i=1}^{N}\frac{h}{6}(f(x_{i-1}) + 4f(x_{i-\frac{1}{2}}) + f(x_i))$$
+$$\int\limits_{a}^{b} L_{2}(x) dx \approx \frac{h}{6}(f_0 + f_N + 2(f_1 + \dots + f_{N-1}) + 4(f_{\frac{1}{2}} + \dots + f_{N - \frac{1}{2}})) $$
+
+$$ \psi_i \leqslant \frac{M_{4i}h^4}{2880},~|\psi| \leqslant \frac{M_4h^4(b-a)}{2880} \implies \psi = O(h^4)$$
+
+\todo{сюда бы картинки разбиенитя площади под кривой для разных методов}
+
+% -------- source --------
+\bigbreak
+[\cite[page 69-96]{replace_me}]

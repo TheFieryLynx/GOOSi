@@ -1,0 +1,159 @@
+\textbf{\LARGE osn 1. Предел и непрерывность функций одной и нескольких переменных. Свойства функций  непрерывных на отрезке.}
+
+Множество всех упорядоченных совокупностей $(x_1,\dots,x_m)$ $m$ чисел $x_1,\dots,x_m$ наз-ся \textbf{m-мерным координатным пространством $A_m$}.
+
+% \\ Координатное пространство $A_m$ называется \textbf{m-мерным метрическим пространством $E_m$}, если между любыми двумя точками $M'(x'_1,\dots,x'_m)$ и $M''(x'',\dots,x'' )$ координатного пространства $A_m$ определен о расстояние $$ \rho(M', M'')=\sqrt{(x''_1 - x_1')^2+ \dots + (x''_m - x'_m)^2} $$
+\bigbreak
+\mathLet \ имеется  некоторое множество M и некоторая функция $\rho : M \times M \rightarrow R^+$. Функция $\rho$ называется \textbf{метрикой} (расстоянием), а пара $(M, \rho)$ -- \textbf{метрическим пространством}, если $\forall x, y, z \in M$ выполнено:
+\begin{enumerate}
+    \item $\rho(x, y) > 0$ и $\rho(x, y) = 0 \Leftrightarrow  x = y$
+    \item $\rho(x, y) = \rho(y, x)$ (симметричность)
+    \item $\rho(x, y) \leq \rho(x, z) + \rho(z, y)$ (неравенство треугольника)
+\end{enumerate}
+% При этом вместо $(M, \rho)$ часто используют сокращённое обозначение M , автоматически подразумевая, что на M задана некоторая метрика $\rho$
+
+\bigbreak
+Если каждой точке $M$ из $\{M\}$ точек $E_m$ ставится в соответствие по известному закону некоторое число $u$, то говорят, что на множестве $\{M\}$ задана функция $u = f(M)$. $\{M\}$ --- \textbf{область определения функции} $u = f(M)$. Число $u$, соответствующее данной $M$ из $\{M\}$ ---\textbf{ значение функции} в $M$. Совокупность $\{u\}$ всех частных значений $u = f(M)$ --- \textbf{множество значений этой функции}.
+
+% \bigbreak
+% \textbf{Лемма о покомпонентной сходимости.} Последовательность $\{M_n\}$ точек m-мерного евклидова пространства сходится к точке $A(a_1,\dots,a_m)$ $\Leftrightarrow$ числовые последовательности $\{x_1^{(n)}\},\dots,\{x_m^{(n)}\}$ координат точек $\{M_n\}$ сходятся к $a_1,\dots,a_m$ \textit{(Никитин сказал, что будет круто это рассказать, но чет непонятно зачем)}
+
+% \begin{proof}
+% $(\implies) \{M_n\} \rightarrow A \implies \forall \varepsilon > 0 \exists N \in \N: \forall n \geq N \pho(M_n,A) < \varepsilon \implies$ при $n \geq N \sqrt{(x_1^{(n)}-a_1)^2+\dots+(x_m^{(n)}-a_m)^2} < \varepsilon \implies$ при $n \geq N \left|x_1^{(n)}-a_1\right| < \varepsilon,\dots, \left|x_m^{(n)}-a_m\right| < \varepsilon \implies \{x_1^{(n)}\},\dots,\{x_m^{(n)}\}$ сходятся к $a_1,\dots,a_m$ соответственно \\
+% $(\impliedby)$ Пусть $\{x_1^{(n)}\},\dots,\{x_m^{(n)}\}$ сходятся к $a_1,\dots,a_m$ соответственно, тогда $\forall \varepsilon > 0 \exists N_1,\dots,N_m \in \N: \forall n: n \geq N_1,\dots,n \geq N_m \left|x_1^{(n)}-a_1\right| < \frac{\varepsilon}{\sqrt{m}},\dots,\left|x_m^{(n)}-a_m\right| < \frac{\varepsilon}{\sqrt{m}} \implies$ при $n \geq N=\max\{N_1,\dots,N_m\}$ выполнено $\rho(M_n,A) < \varepsilon \implies \{M_n\} \to A$ при $n \to \infty$
+% \end{proof}
+
+\bigbreak
+\textbf{Предел по Гейне.} Число $b \in R$ называется \textbf{предельным значением функции} $u = f(M)$ в точке $A \in R^m$ (пределом функции при $M \to A$), если для $\forall$ сходящейся к $A$ последовательности $M_1, \dots, M_n, \dots$ точек множества $\{M\}$, где $M_n \neq A$, соответствующая последовательность $f(M_1),\dots,f(M_n), \dots$ значений функций сходится к $b$.
+
+\bigbreak
+\textbf{Предел по Коши.} Число $b \in R$ называется \textbf{предельным значением функции} $u = f(M)$ в точке $A = (a_1, \dots, a_m)$, если $\forall \varepsilon > 0 ~ \exists \delta: ~ \forall M \in \{M\}$, удовлетворяющих $0 < \rho(M, A) < \delta$, выполняется $|f(M) - b| < \varepsilon$.
+
+\bigbreak
+\textbf{Теорема об эквивалентности определений предела.} Определения предела функции по Коши и по Гейне эквивалентны.
+
+\begin{proof}
+$($Г$\implies$К$)$ \mathLet \ $b$ -- предел $u=f(M)$ в т. $A$ по Гейне, но опр. по Коши не выполнено
+$\implies \exists \varepsilon > 0: \forall \delta > 0 ~ \exists M \in \{M\}: 0 < \rho(M,A) < \delta, \left|f(M)-b\right| \geq \varepsilon$
+$\implies$ для $\delta_n=\frac{1}{n} ~ \exists M_n: 0<\rho(M_n,A)<\delta_n, ~ \left|f(M_n)-b\right| \geq \varepsilon$
+$\implies \{M_n\} \to A \implies$ по Гейне $\{f(M_n)\} \to b \implies$ противоречие с $\left|f(M_n)-b\right| \geq \varepsilon$. \\
+$($К$\implies$Г$)$ \mathLet \ $b$ -- предел $u=f(M)$ в т. $A$ по Коши и $\{M_n\} \to A$. Фиксируем $\varepsilon > 0$, по Коши $\exists \delta > 0: \forall M \in \{M\}: 0 < \rho(M,A) < \delta, ~ \left|f(M)-b\right| < \varepsilon$. 
+Т.к. $\{M_n\} \to A$, то для этого $\delta ~ \exists N \in N: \forall n \geq N, ~ 0 < \rho(M_n, A) < \delta \implies \left|f(M_n)-b\right| < \varepsilon \implies \{f(M_n)\} \to b$
+\end{proof}
+
+% \\ \textbf{Лемма о покомпонентной сходимости} \\
+%  $x_k=(x_k^1,\ldots,x_k^n)\overset{\|\cdot\|}{\to}x_0=(x_0^1,\ldots,x_0^n)\Leftrightarrow x_k^1\to x_0^1,\ldots, x_k^n\to x_0^n$ при $k\to\infty$.
+
+% \begin{proof}
+%  $x_k\overset{\|\cdot\|}{\to}x_0\Leftrightarrow x_k\overset{\|\cdot\|_\infty}{\to}x_0\Leftrightarrow\max\{|x_k^1-x_0^1|,\ldots,|x_k^n-x_0^n|\}\to 0 \Leftrightarrow x_k^m \to x_0^m$ $\forall m\in\overline{1,n}$.
+% \end{proof}
+
+% \\ \textbf{Лемма о покомпонентной фундаментальности} \\
+% Последовательность $x_k=(x_k^1,\ldots,x_k^n)\in R^n$ фундаментальна $\Leftrightarrow$ последовательности $x_k^1,\ldots,x_k^n$ фундаментальны.
+
+% \begin{proof} Так как $\|\cdot\|_\infty\sim\|\cdot\|$, то существуют $c_1,c_2>0$ такие, что $$c_1\|x_p-x_q\|\leqslant\max\{|x_p^1-x_q^1|,\ldots,|x_p^n-x_q^n|\}\leqslant c_2\|x_p-x_q\|.$$ Фиксируем любое $\varepsilon > 0$. $\newline$
+%  $\Rightarrow:$ \indent $\forall p,q\geqslant N$ $\|x_p-x_q\|<\displaystyle\frac{\varepsilon}{c_2}$  $\Rightarrow$ $\forall m\in \overline{1,n}, \forall p,q\geqslant N$ $|x_p^m-x_q^m|<\varepsilon$. $\newline$
+% $\Leftarrow:$ \indent $\forall p,q\geqslant N$ $|x_p^1-x_q^1|<c_1\varepsilon,\ldots,|x_p^n-x_q^n|<c_1\varepsilon$ $\Rightarrow$ $\forall p,q\geqslant N$ $\|x_p - x_q\|<\varepsilon$.
+% \end{proof}
+
+\bigbreak
+Последовательность $M_1, \dots, M_n$ наз-ся \textbf{фундаментальной}, если $\forall \varepsilon > 0 ~ \exists N=N(\varepsilon) \in \mathbb{N}: \forall m \geq N, p \in \mathbb{N}$ выполнено $\rho(M_{m+p}, M_{m}) < \varepsilon$.
+
+\textbf{Критерий Коши сходимости посл-ти}: последовательность $M_1, \dots, M_n$ сходится $\Longleftrightarrow$ последовательность фундаментальна.
+
+\bigbreak
+Функция $f(M)$ \textbf{удовлетворяет в точке M условию Коши}, если $\forall \varepsilon > 0 ~ \exists \delta: \forall M', M'' \in \mathring{U}(M)$, удовлетворяющих $0 < \rho(M',M) < \delta, ~ 0 < \rho(M'',M) < \delta$, следует $|f(M') - f(M'')| < \varepsilon$
+
+\bigbreak
+\textbf{Критерий Коши $\exists$ предела ф-ции}. Чтобы функция $f(x)$ имела конечное предельное значение в точке $a$, необходимо и достаточно, чтобы функция $f(a)$ удовлетворяла в этой точке условию Коши.
+
+\begin{proof}
+$(\implies) ~ \mathLet ~ \lim\limits_{M \to A}f(M)=b$. 
+Выберем $\varepsilon > 0 \implies$ по опр. предела по Коши для $\frac{\varepsilon}{2} ~ \exists \delta > 0, ~ \forall M', M'' \in \{M\}:$
+$0< \rho(M',A) < \delta, ~ 0< \rho(M'', A) < \delta$
+$\implies \left|f(M')-b\right| < \frac{\varepsilon}{2}, ~ \left|f(M'')-b\right| < \frac{\varepsilon}{2}$. 
+Тогда $ \left|f(M')-f(M'')\right| = \left|(f(M') - b) - (f(M'') - b)\right| \leq \left|f(M')-b\right| + \left|f(M')-b\right| <  \frac{\varepsilon}{2} + \frac{\varepsilon}{2} < \varepsilon$
+
+$(\impliedby) ~ \mathLet ~ f(M)$ удовл. в т. $A$ усл. Коши, $\{M_n\}: \{M_n\} \rightarrow A, ~ M_n \neq A$. 
+Выберем $\varepsilon > 0$ и соотв. $\delta > 0$ такое, что вып. усл. Коши, для этого $\delta$. 
+$\exists N \in \mathbb{N} : \forall n \geq N \implies 0 < \rho(M_n,A) < \delta$ (т.к. $\{M_n\} \rightarrow A$).
+Таким образом для $p = 1,2,\dots \implies 0 < \rho(M_{n+p},A) < \delta$ при $n \geq N \implies$ в силу усл. Коши $\left|f(M_{n+p})-f(M_n)\right| < \varepsilon \implies \{f(M_n)\}$ -- фундаментальна $\implies \{f(M_n)\}$ сход. к некоторому $b$. \\
+$\mathLet ~ \{M_n\} \rightarrow A, ~ \{M'_n\} \rightarrow A, ~ \{f(M_n)\} \rightarrow b, ~ \{f(M'_n)\} \rightarrow b'$. Тогда $f(M_1), f(M'_1), \dots, f(M_n), f(M'_n), \dots$ сходится $\implies$ все её подпосл-ти сходятся к одному пределу $\implies b = b'$.
+\end{proof}
+
+\bigbreak
+Функция $f(x)$ называется \textbf{непрерывной в т. a}, если $\lim\limits_{x \to a} f(x) = f(a)$ \textit{(функция должна быть задана в т. a!)}.
+Для функции нескольких переменных можно определить непрерывность по каждой из переменных.
+
+\bigbreak
+\textbf{Теорема об арифметических операциях над непрерывными функциями.} $\mathLet ~ f(M)$ и $g(M)$ непрерывны в т. $A$. Тогда $f(M) + g(M)$, $f(M)-g(M)$, $f(M)g(M)$, $\frac{f(M)}{g(M)}$ (последнее при условии $g(M)\neq0$) непрерывны в т. $A$.
+
+\bigbreak
+\mathLet \ функции $x_1 = \phi_1(t_1,\dots,t_k), ~ \dots, ~ x_m = \phi_m(t_1,\dots,t_k)$ заданы на множестве $\{N\}$ евклидова пространства $E_m$, $t_1, \dots, t_k$ --- координаты точек в $E_k \implies \forall N(t_1,\dots,t_k) \in \{N\}$ ставится в соответствие точка $M(x_1,\dots,x_m)$ евклидова пространства $E_m$. \mathLet \ $\{M\}$ --- множество всех этих точек, $u = f(x_1,\dots,x_m)$ - функция $m$ переменных, заданная на $\{M\}$ $\implies$ на множестве $\{N\}$ пространства $E_k$ \textbf{определена сложная функция} $u = f(\phi_1(t_1,\dots,t_k),\dots,\phi_m(t_1,\dots,t_k)) = f(x(t))$
+
+\bigbreak
+\textbf{Теорема о непрерывности сложной функции.} \mathLet \ функции $x_1 = \phi_1(t_1,\dots,t_k), \dots, x_m = \phi_m(t_1,\dots,t_k)$  непрерывны в точке $a=(a_1,\dots,a_k)$, а функция $u = f(x_1,\dots,x_m)$ непрерывна в точке $b=(b_1,\dots,b_m)$. Тогда сложная функция $f(x(t))$ непрерывна в точке $a$.
+
+\bigbreak
+\textbf{Свойства функций, непрерывных на отрезке} \textit{(тут именно отрезок, поэтому доказываем для функции одной переменной)}:
+
+\bigbreak
+\textbf{Теорема о сохранении знака.} \mathLet \ $f(x)$ определена на мн-ве $\{X\}$, непрерывна в т. $a$ и $f(a) > 0 ~ (f(a) < 0)$. Тогда $\exists \delta > 0: \forall x \in \{X\}, x \in (a-\delta, a+\delta) \implies f(x) > 0 ~ (f(x) < 0)$. 
+
+\begin{proof}
+$\forall \varepsilon > 0 ~ \exists \delta(\varepsilon)>0: \forall x \in {X}, ~ 0 < \left|x-a\right| < \delta$
+$\implies \left|f(x)-f(a)\right|<\varepsilon$. 
+$\mathLet ~ \varepsilon=\frac{\left|f(a)\right|}{2} \implies -\varepsilon < f(x) - f(a) < \varepsilon \implies f(a) - \frac{\left|f(a)\right|}{2} < f(x) < f(a) + \frac{\left|f(a)\right|}{2}$ (тот же знак)
+\end{proof}
+
+\bigbreak
+\textbf{Теорема о прохождении через 0.} $\mathLet ~ f(x)$ непрерывна на $[a,b], ~ f(a) > 0; f(b) < 0$. Тогда $\exists c \in (a,b): f(c) = 0$.
+
+\begin{proof}
+$\mathLet ~ f(a) < 0, ~ f(b) > 0, ~ A = \{x \in [a,b]: f(x) < 0\}$. $A \neq \varnothing$ (т.к. $a \in A$) и ограничено сверху (например, числом $b$) $\implies \exists sup A = c$. Покажем, что $f(c) = 0$. \\
+$\mathLet ~ f(c) > 0$. Тогда $c \neq a$ и по т. о сохр. знака $\exists \delta > 0: f(x) > 0 ~ \forall x \in (c - \delta, c] \implies c \neq sup A \implies$ противоречие $\implies f(c) \leq 0$. \\
+$\mathLet ~ f(c) < 0$. Тогда $c \neq b$ и по т. о сохр. знака $\exists \delta > 0: f(x) < 0 ~ \forall x \in [c, c + \delta) \implies c \neq sup A \implies$ противоречие $\implies f(c) = 0$.
+\end{proof}
+
+\bigbreak
+\textbf{Теорема о достижении значения.} $\mathLet ~ f(x)$ непрерывна на $[a,b]$, тогда $\forall \gamma \in [\alpha, \beta]$, где $\alpha=\min\{f(a), f(b)\}, ~ \beta=\max\{f(a), f(b)\}, ~ \exists c \in [a,b]: f(c) = \gamma$.
+
+\begin{proof}
+Если $\gamma = \alpha$ или $\gamma = \beta$ -- очевидно. $\mathLet ~ \alpha < \gamma < \beta$. \faEye \ $g(x) = f(x) - \gamma$. Она удовл. усл. пред. теоремы $\implies \exists c \in [a,b]: g(c) = 0$, т.е. $f(c) = \gamma$
+\end{proof}
+
+\bigbreak
+\textbf{Теорема Больцано-Вейерштрасса} (нужна ниже) \\
+Из любой ограниченной последовательности $\{x_n\}$ можно выделить сходящуюся подпоследовательность.
+
+\begin{proof}
+$\mathLet ~ \{X\}$ -- мн-во значений последовательности $\{x_n\}$. Если $\{X\}$ -- конечно, то найдется подпосл-ть такая, что $x_{n_1} = x_{n_2} = x_{n_3}$. Если $\{X\}$ -- бесконечно, то по принципу Больцано-Вейерштрасса (у любого огр. беск. мн-ва есть хотя бы 1 предельная точка) у $\{X\}$ есть предельная точка $\implies \exists$ сходящаяся к этой точке подпосл-ть.
+\end{proof}
+
+\bigbreak
+\textbf{1-я теорема Вейерштрасса.} Если $f(x)$ непрерывна на сегменте $[a,b]$, то она ограничена на нём.
+
+\begin{proof}
+Выберем $\{x_n\}: x_n \in [a,b], ~ \left|f(x_n)\right|>n$. По теореме Б-В можно выделить сход. подпосл-ть $\{x_{k_n}\}$, предел $c$ которой $\in [a,b]$. Очевидно, что посл-ть $\{f(x_{k_n})\}$ беск. большая, но в силу непр-ти функции в т. $c$ эта посл-ть должна сходится к $f(c) \implies$ противоречие.
+\end{proof}
+
+\bigbreak
+\textbf{2-я теорема Вейерштрасса.} Если $f(x)$ непрерывна на сегменте $[a,b]$, то она достигает на нем своих ТВГ и ТНГ. 
+
+\begin{proof}
+$f(x)$ непр. на $[a,b] \implies$ она огр. на $[a,b] \implies \exists M, m$ -- ТВГ и ТНГ $f(x)$ на $[a,b]$. $\mathLet ~ f(x) < M ~ \forall x \in [a,b]$. 
+Введем $g(x) = \frac{1}{M - f(x)}$. 
+$g(x)$ -- непр. на $[a,b]$, причем знаменатель не обр. в 0 $\implies$ огр. на $[a,b] \implies \exists A > 0: \frac{1}{M-f(x)} \leq A ~ \forall x \in [a,b] \implies M -f(x) \geq \frac{1}{A} \implies f(x) \leq M - \frac{1}{A} ~ \forall x \in [a,b] \implies M \neq sup f(x) \implies$ противоречие (для ТНГ аналогично) 
+\end{proof}
+
+\bigbreak
+Функция $f(x)$ называется \textbf{равномерно непрерывной} на множестве $\{X\}$, если для $ \forall \varepsilon > 0 ~ \exists \delta = \delta(\varepsilon) > 0: \forall x', x'' \in \{X\}: \left|x'-x''\right| < \delta$, выполняется $|f(x') - f(x'')| < \varepsilon$.
+
+\bigbreak
+\textbf{Теорема о равномерной непрерывности (Кантора).} Непрерывная на сегменте $[a,b]$ функция равномерно непрерывна на нем. 
+
+\begin{proof}
+$\mathLet ~ f(x)$ непр. на $[a,b]$, но не р/н на нем. Тогда $\exists x'_n, x''_n \in [a,b]: \left|x'_n-x''_n\right| < \frac{1}{n} \forall n \in N$, но $\left|f(x'_n)-f(x''_n)\right| \geq \varepsilon$. \\
+$\{x_n\}$ -- огр. $\implies \exists \{x'_{n_k}\}\in [a,b]: \exists \lim\limits_{k \to \infty} x'_{n_k} = c$. 
+\faEye \ $\{x''_{n_k}\}$: $\left|x''_{n_k} - c\right| \leq \left|x''_{n_k} - x'_{n_k}\right| + \left|x'_{n_k} - c\right| \implies \{x''_{n_k}\} \to c$. По определению по Гейне непрерывности в точке: $\{f(x'_{n_k})\} \to f(c), \{f(x''_{n_k})\} \to f(c)$ -- противоречие с $\left|f(x'_n)-f(x''_n)\right| \geq \varepsilon$.
+\end{proof}

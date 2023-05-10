@@ -12,6 +12,11 @@
 \usepackage{amssymb}
 \usepackage{listings}
 \usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{needspace}
+\raggedbottom
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
 \usepackage{makecell}  % для переноса строк в таблицах
 \usepackage[backend=biber, style=authortitle]{biblatex}  % для ссылок на литературу
 \addbibresource{references.bib}
@@ -75,13 +80,14 @@
 \renewenvironment{itemize}
 {\begin{itemize2}}
 {\end{itemize2}}
-
+\renewcommand{\thesection}{\arabic{section}}
 \begin{document}
-
 \include{tickets/titul}
+\tableofcontents
+
 % -------------------------------------------- OSN -
 
-
+\section{Основная часть}
 \include{tickets/t_osn01}
 \include{tickets/t_osn02}
 \include{tickets/t_osn03}
@@ -104,7 +110,9 @@
 \include{tickets/t_osn20}
 \include{tickets/t_osn21}
 \include{tickets/t_osn22}
-\include{tickets/t_osn23}
+%\include{tickets/t_osn23} %outdated
+\include{tickets/t_osnML01}
+\include{tickets/t_osnML02}
 \include{tickets/t_osn24}
 \include{tickets/t_osn25}
 \include{tickets/t_osn26}
@@ -118,7 +126,8 @@
 \include{tickets/anekdoty}
 
 % -------------------------------------------- DOP -
-
+\section{Дополнительная часть (3 поток)}
+\needspace{3\baselineskip}
 \include{tickets/t_dop01}
 \include{tickets/t_dop02}
 \include{tickets/t_dop03}
@@ -128,7 +137,7 @@
 \include{tickets/t_dop07}
 \include{tickets/t_dop08}
 \include{tickets/t_dop09}
-\include{tickets/t_dop10}
+%\include{tickets/t_dop10} %outdated
 \include{tickets/t_dop11}
 \include{tickets/t_dop12}
 \include{tickets/t_dop13}

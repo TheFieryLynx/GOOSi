@@ -1,0 +1,113 @@
+\subsection{OSN 34 Постановка краевых задач для уравнения теплопроводности.  Метод разделения переменных для решения первой краевой задачи.}
+
+Краевые задачи для уравнения теплопроводности представляют собой математические модели процессов распространения тепла, например, в стержне.
+    
+$u(x,t)$ --- температура в сегменте с координатами $x$ во время $t$.
+
+$F(x, t)$ --- плотность тепловых источников, $a^2 = \frac{k}{c\rho}$ --- коэффициент температуропроводности, $f(x,t)=\frac{F(x,t)}{c\rho}$ , $c$ --- удельная теплоемкость, $k$ --- коэффициент теплопроводности, $\rho$ --- плотность.
+
+\bigbreak
+
+Одномерное уравнение теплопроводности:
+
+$u_t(x,t)=a^2u_{xx}(x,t)+f(x,t)$
+
+
+\textbf{Основные типы задач:}
+\begin{itemize}
+    \item \textbf{Первая краевая задача.}
+    
+    $\begin{cases}
+    u_t(x,t)=a^2u_{xx}(x,t)+f(x,t),~0<x<l,~t>0&\\
+    u(0,t)=\mu_1(t),~t\geqslant0&\\
+    u(l,t)=\mu_2(t)&\\
+    u(x,0)=\varphi(x),~0\leqslant x\leqslant l&\\
+    \end{cases}$
+    \item \textbf{Вторая краевая задача.}
+    
+    $\begin{cases}
+    u_t(x,t)=a^2u_{xx}(x,t)+f(x,t),~0<x<l,~t>0&\\
+    u_x(0,t)=\nu_1(t),~t\geqslant0&\\
+    u_x(l,t)=\nu_2(t)&\\
+    u(x,0)=\varphi(x),~0\leqslant x\leqslant l&\\
+    \end{cases}$
+    \item \textbf{Смешанная краевая задача.} --- одно из краевых условий задано функцией $u(0,t)$ или $u(l,t)$, а другое производной $u$ по $x$.
+\end{itemize}
+
+$u(x,t)$ --- \textbf{решение 1-ой краевой задачи} для уравнения теплопроводности, если:
+\begin{enumerate}
+    \item $u(x,t)\in C([0,l]\times[0,+\infty))$;
+    \item $u(x,t)\in C^2((0,l)\times(0,+\infty))$;
+    \item $u(x,t)$ удовлетворяет условиям 1-ой краевой задачи.
+\end{enumerate}
+
+\bigbreak
+Далее будем рассматривать $f(x,t)=0$.
+
+\bigbreak
+\textbf{Метод разделения переменных для решения первой краевой задачи.}
+
+$\begin{cases}
+    u_t(x,t)=a^2u_{xx}(x,t),~0<x<l,~t>0&\\
+    u(0,t)=0,~t\geqslant0&\\
+    u(l,t)=0&\\
+    u(x,0)=\varphi(x),~0\leqslant x\leqslant l&\\
+\end{cases}$
+
+\bigbreak
+Будем искать решение в виде $u(x,t)=X(x)T(t)$. Рассмотрим задачу с однородными начальными и краевыми условиями:
+
+$\begin{cases}
+XT'=a^2X''T&\\
+X(0)T(t)=0&\\
+X(l)T(t)=0&\\
+\end{cases} \rightarrow 
+\begin{cases}
+\frac{T'}{a^2T}=\frac{X''}{X}=-\lambda&\\
+X(0)=X(l)=0&\\
+\end{cases}$
+
+\bigbreak
+Получаем две задачи:
+\begin{enumerate}
+    \item Задача Штурма-Лиувилля:
+    
+    $\begin{cases}
+    X''+\lambda X=0&\\
+    X(0)=X(l)=0&\\
+    \end{cases}$
+    
+    Рассматриваем 3 случая: $\lambda<0,~\lambda=0,~\lambda>0$. При $\lambda>0$ получаем $\lambda_n=(\frac{\pi n}{l})^2,~X_n(x)=\sin(\frac{\pi n x}{l}),~n\in\mathbb{N}$
+    
+    \item $T'+(\frac{\pi n a}{l})^2 T = 0$
+    
+    Решение: $T_n(t)=a_n e^{-(\frac{\pi n a}{l})^2t},~n\in\mathbb{N}$
+\end{enumerate}
+
+\bigbreak
+Получаем решение: $u(x,t)=\displaystyle\sum_{n=1}^{\infty} a_n e^{-(\frac{\pi n a}{l})^2t} \sin(\frac{\pi n x}{l})$
+
+Для нахождения $a_n$ используем начальное условие.
+Так как $\{\sin(\frac{\pi n x}{l})\}$ --- замкнутая полная система функций, то $\forall$ кусочно-дифференцируемую функцию можно разложить в ряд Фурье:
+
+$$\varphi(x) = \displaystyle\sum_{n=1}^{\infty} \varphi_n \sin(\frac{\pi n x}{l}),~\varphi_n=\frac{2}{l}\int\limits_0^l\varphi(\xi)\sin(\frac{\pi n \xi}{l})d\xi$$
+
+Так как $u(x,0) = \varphi(x)$, получаем $a_n = \varphi_n,~n\in\mathbb{N}$. Таким образом, получаем решение:
+
+$$u(x,t)=
+\displaystyle\sum_{n=1}^{\infty} \frac{2}{l}\int\limits_0^l\varphi(\xi)\sin \left( \frac{\pi n \xi}{l} \right)d\xi \cdot e^{-(\frac{\pi n a}{l})^2t} \sin \left(\frac{\pi n x}{l} \right)$$
+
+\bigbreak
+Для существования решения достаточно потребовать, чтобы $\varphi\in C^2[0,l]$ и $\varphi(0)=\varphi(l)=0$.
+
+\bigbreak
+Остальные случаи:
+\begin{itemize}
+    \item $X'(0)=X(l)=0$: $\lambda_n=\left(\frac{\pi(2n+1)}{2l}\right)^2, X_n=\cos\sqrt{\lambda_n}, n=0,1,2,\dots$ \\
+    \item $X(0)=X'(l)=0$: $\lambda_n=\left(\frac{\pi(2n+1)}{2l}\right)^2, X_n=\sin\sqrt{\lambda_n}, n=0,1,2,\dots$ \\
+    \item $X'(0)=X'(l)=0$: $\lambda_n=\left(\frac{\pi n}{l}\right)^2, X_n=\cos\sqrt{\lambda_n}, n=1,2,\dots; X_0=1$ \\
+\end{itemize}
+
+% -------- source --------
+\bigbreak
+[\cite[page 200-202]{urmati_tikhonov}]

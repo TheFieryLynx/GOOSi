@@ -1,113 +1,85 @@
-\subsection{OSN 34 Постановка краевых задач для уравнения теплопроводности.  Метод разделения переменных для решения первой краевой задачи.}
+\subsection{OSN 33 Задача Коши для уравнения колебания струны. Формула Даламбера.}
 
-Краевые задачи для уравнения теплопроводности представляют собой математические модели процессов распространения тепла, например, в стержне.
-    
-$u(x,t)$ --- температура в сегменте с координатами $x$ во время $t$.
+\textbf{Задача Коши для уравнения колебания струны.}
 
-$F(x, t)$ --- плотность тепловых источников, $a^2 = \frac{k}{c\rho}$ --- коэффициент температуропроводности, $f(x,t)=\frac{F(x,t)}{c\rho}$ , $c$ --- удельная теплоемкость, $k$ --- коэффициент теплопроводности, $\rho$ --- плотность.
-
-\bigbreak
-
-Одномерное уравнение теплопроводности:
-
-$u_t(x,t)=a^2u_{xx}(x,t)+f(x,t)$
-
-
-\textbf{Основные типы задач:}
-\begin{itemize}
-    \item \textbf{Первая краевая задача.}
-    
-    $\begin{cases}
-    u_t(x,t)=a^2u_{xx}(x,t)+f(x,t),~0<x<l,~t>0&\\
-    u(0,t)=\mu_1(t),~t\geqslant0&\\
-    u(l,t)=\mu_2(t)&\\
-    u(x,0)=\varphi(x),~0\leqslant x\leqslant l&\\
-    \end{cases}$
-    \item \textbf{Вторая краевая задача.}
-    
-    $\begin{cases}
-    u_t(x,t)=a^2u_{xx}(x,t)+f(x,t),~0<x<l,~t>0&\\
-    u_x(0,t)=\nu_1(t),~t\geqslant0&\\
-    u_x(l,t)=\nu_2(t)&\\
-    u(x,0)=\varphi(x),~0\leqslant x\leqslant l&\\
-    \end{cases}$
-    \item \textbf{Смешанная краевая задача.} --- одно из краевых условий задано функцией $u(0,t)$ или $u(l,t)$, а другое производной $u$ по $x$.
-\end{itemize}
-
-$u(x,t)$ --- \textbf{решение 1-ой краевой задачи} для уравнения теплопроводности, если:
-\begin{enumerate}
-    \item $u(x,t)\in C([0,l]\times[0,+\infty))$;
-    \item $u(x,t)\in C^2((0,l)\times(0,+\infty))$;
-    \item $u(x,t)$ удовлетворяет условиям 1-ой краевой задачи.
-\end{enumerate}
+$$\begin{cases}
+u_{tt}=a^2u_{xx}+f(x,t)&\\
+u(x,0)=\varphi(x)&\\
+u_t(x,0)=\psi(x)&\\
+\end{cases}$$ где $t>0,~a>0,~u(x,t)\in C^2(t > 0, x\in \mathbb{R})\cap C^1(t \geqslant 0, x\in \mathbb{R})$.
 
 \bigbreak
-Далее будем рассматривать $f(x,t)=0$.
+\textit{Физическая интерпретация:} уравнение малых поперечных колебаний струны. $u(x,t)$ -- положение точки струны с координатой $x$ в момент времени $t$. Если концы струны закреплены, то $u(0,t)=0, u(l,t)=0$. Так как процесс колебаний струны зависит от ее начальной формы и распределения скоростей, то задают начальные условия. $a = \sqrt{\frac{T_0}{\rho}}$, где $T_0$ -- величина натяжения (не зависит от $x$, $\rho$ -- линейная плотность струны. $f(x,t)$ -- плотность внешних сил.
 
 \bigbreak
-\textbf{Метод разделения переменных для решения первой краевой задачи.}
-
-$\begin{cases}
-    u_t(x,t)=a^2u_{xx}(x,t),~0<x<l,~t>0&\\
-    u(0,t)=0,~t\geqslant0&\\
-    u(l,t)=0&\\
-    u(x,0)=\varphi(x),~0\leqslant x\leqslant l&\\
-\end{cases}$
-
+Далее будем рассматривать $f(x,t) = 0$.
 \bigbreak
-Будем искать решение в виде $u(x,t)=X(x)T(t)$. Рассмотрим задачу с однородными начальными и краевыми условиями:
 
-$\begin{cases}
-XT'=a^2X''T&\\
-X(0)T(t)=0&\\
-X(l)T(t)=0&\\
-\end{cases} \rightarrow 
-\begin{cases}
-\frac{T'}{a^2T}=\frac{X''}{X}=-\lambda&\\
-X(0)=X(l)=0&\\
-\end{cases}$
+(\textit{Представим что $\frac{\partial^2u}{\partial t^2} = \frac{d^2u}{dt^2}$ и $\frac{\partial^2u}{\partial x^2} = \frac{d^2u}{dx^2}$:
+$\frac{d^2u}{dt^2} = a^2\frac{d^2u}{dx^2} \implies$
+${d^2udx^2 = a^2dt^2d^2u} \implies$
+${dx^2 = a^2dt^2}$.})
+Характеристическое уравнение: $dx^2-a^2dt^2=0$. \\
+$dx - adt=0, ~ dx+adt = 0 \implies x-at=C_1 = const, ~ x+at=C_2 = const$
 
-\bigbreak
-Получаем две задачи:
-\begin{enumerate}
-    \item Задача Штурма-Лиувилля:
-    
-    $\begin{cases}
-    X''+\lambda X=0&\\
-    X(0)=X(l)=0&\\
-    \end{cases}$
-    
-    Рассматриваем 3 случая: $\lambda<0,~\lambda=0,~\lambda>0$. При $\lambda>0$ получаем $\lambda_n=(\frac{\pi n}{l})^2,~X_n(x)=\sin(\frac{\pi n x}{l}),~n\in\mathbb{N}$
-    
-    \item $T'+(\frac{\pi n a}{l})^2 T = 0$
-    
-    Решение: $T_n(t)=a_n e^{-(\frac{\pi n a}{l})^2t},~n\in\mathbb{N}$
-\end{enumerate}
+Сделаем замену переменных: $$x+at=\xi,~x-at=\eta$$
+$$\xi_x=1, ~ \xi_{xx}=0, ~ \eta_x = 1,  ~ \eta_{xx} = 0,$$
+$$\xi_t=a, ~ \xi_{tt}=0, ~ \eta_t = -a, ~ \eta_{tt} = 0.$$
 
-\bigbreak
-Получаем решение: $u(x,t)=\displaystyle\sum_{n=1}^{\infty} a_n e^{-(\frac{\pi n a}{l})^2t} \sin(\frac{\pi n x}{l})$
+Тогда:
+$$u_x=u_{\xi}\cdot\xi_x+u_{\eta}\cdot\eta_x,$$
+$$u_t=u_{\xi}\cdot\xi_t+u_{\eta}\cdot\eta_t,$$
+$$u_{xx}=u_{\xi\xi}\cdot\xi_x^2+2u_{\xi\eta}\cdot\xi_x\cdot\eta_x+u_{\xi}\cdot\xi_{xx}+u_{\eta\eta}\cdot\eta_x^2+u_{\eta}\cdot\eta_{xx},$$
+$$u_{tt}=u_{\xi\xi}\cdot\xi_t^2+2u_{\xi\eta}\cdot\xi_t\cdot\eta_t+u_{\xi}\cdot\xi_{tt}+u_{\eta\eta}\cdot\eta_t^2+u_{\eta}\cdot\eta_{tt}.$$
 
-Для нахождения $a_n$ используем начальное условие.
-Так как $\{\sin(\frac{\pi n x}{l})\}$ --- замкнутая полная система функций, то $\forall$ кусочно-дифференцируемую функцию можно разложить в ряд Фурье:
+Подставляем в уравнение $u_{tt}=a^2u_{xx}$:
+$$u_{\xi\xi}\cdot\xi_t^2+2u_{\xi\eta}\cdot\xi_t\cdot\eta_t+\displaystyle\underbrace{u_{\xi}\cdot\xi_{tt}}_{\text{= 0}}+u_{\eta\eta}\cdot\eta_t^2+\displaystyle\underbrace{u_{\eta}\cdot\eta_{tt}}_{\text{= 0}}=$$ $$=a^2(u_{\xi\xi}\cdot\xi_x^2+2u_{\xi\eta}\cdot\xi_x\cdot\eta_x+\displaystyle\underbrace{u_{\xi}\cdot\xi_{xx}}_{\text{= 0}}+u_{\eta\eta}\cdot\eta_x^2+\displaystyle\underbrace{u_{\eta}\cdot\eta_{xx}}_{\text{= 0}})$$
+Преобразуем:
+$$a^2u_{\xi\xi}-2a^2u_{\xi\eta}+a^2u_{\eta\eta}=a^2u_{\xi\xi}+2a^2u_{\xi\eta}+a^2u_{\eta\eta}$$
+$$4a^2u_{\xi\eta}=0,   a>0$$
+Получаем: $u_{\xi\eta}=0$
 
-$$\varphi(x) = \displaystyle\sum_{n=1}^{\infty} \varphi_n \sin(\frac{\pi n x}{l}),~\varphi_n=\frac{2}{l}\int\limits_0^l\varphi(\xi)\sin(\frac{\pi n \xi}{l})d\xi$$
+Найдем общий интеграл этого уравнения: $u_{\eta}(\xi, \eta)=f^*(\eta)$, где $f^*(\eta)$ - некоторая функция только переменного $\eta$.
 
-Так как $u(x,0) = \varphi(x)$, получаем $a_n = \varphi_n,~n\in\mathbb{N}$. Таким образом, получаем решение:
+Интегрируя это равенство по $\eta$ при фиксированном $\xi$, получим:
+\begin{equation}
+    u(\xi, \eta)=\int f^*(\eta)d\eta = f_1(\xi) + f_2(\eta)
+    \label{isuvdno}
+\end{equation}
 
-$$u(x,t)=
-\displaystyle\sum_{n=1}^{\infty} \frac{2}{l}\int\limits_0^l\varphi(\xi)\sin \left( \frac{\pi n \xi}{l} \right)d\xi \cdot e^{-(\frac{\pi n a}{l})^2t} \sin \left(\frac{\pi n x}{l} \right)$$
+Обратно, каковы бы ни были дважды дифференцируемые функции $f_1$ и $f_2$, функция $u(\xi,\eta)$, определяемая формулой (\ref{isuvdno}), представляет собой решение уравнения $u_{\xi\eta}=0$. Так как всякое решение уравнения $u_{\xi\eta}=0$ может быть представлено в виде (\ref{isuvdno}) при соответствующем выборе $f_1$ и $f_2$, то формула (\ref{isuvdno}) является общим интегралом этого уравнения. Следовательно, функция $$u(x, t) = f_1(x+at) + f_2(x-at)$$ является общим интегралом уравнения $u_{tt}=a^2u_{xx}$.
 
-\bigbreak
-Для существования решения достаточно потребовать, чтобы $\varphi\in C^2[0,l]$ и $\varphi(0)=\varphi(l)=0$.
+Удовлетворим начальным условиям:
+$$\begin{cases}
+u(x,0)=f_1(x)+f_2(x)=\varphi(x)&\\
+u_t(x,0)=-af_1'(x)+af_2'(x)=\psi(x)&\\
+\end{cases}
+$$
 
-\bigbreak
-Остальные случаи:
-\begin{itemize}
-    \item $X'(0)=X(l)=0$: $\lambda_n=\left(\frac{\pi(2n+1)}{2l}\right)^2, X_n=\cos\sqrt{\lambda_n}, n=0,1,2,\dots$ \\
-    \item $X(0)=X'(l)=0$: $\lambda_n=\left(\frac{\pi(2n+1)}{2l}\right)^2, X_n=\sin\sqrt{\lambda_n}, n=0,1,2,\dots$ \\
-    \item $X'(0)=X'(l)=0$: $\lambda_n=\left(\frac{\pi n}{l}\right)^2, X_n=\cos\sqrt{\lambda_n}, n=1,2,\dots; X_0=1$ \\
-\end{itemize}
+Проинтегрируем второе равенство, получим:
+$$\begin{cases}
+f_1(x)+f_2(x)=\varphi(x)&\\
+f_1(x)-f_2(x)=\frac{1}{a}\int\limits_{x_0}^{x}\psi(\alpha)d\alpha + C&\\
+\end{cases}
+$$
+
+Сложим и вычтем два полученных равенства:
+$$\begin{cases}
+f_1(x)=\frac{1}{2}\varphi(x)+\frac{1}{2a}\int\limits_{x_0}^{x}\psi(\alpha)d\alpha + \frac{C}{2}&\\
+f_2(x)=\frac{1}{2}\varphi(x)-\frac{1}{2a}\int\limits_{x_0}^{x}\psi(\alpha)d\alpha - \frac{C}{2}&\\
+\end{cases}
+$$
+
+Подставим в $u(\xi, \eta) = f_1(x+at) + f_2(x-at)$ найденные выражения для $f_1, f_2$:
+$$u(x,t)=\frac{\varphi(x+at)+\varphi(x-at)}{2} + \frac{1}{2a}\left(\int\limits_{x_0}^{x+at}\psi(\alpha)d\alpha - \int\limits_{x_0}^{x-at}\psi(\alpha)d\alpha\right)$$
+
+Окончательно:
+$$u(x,t)= \frac{\varphi(x+at)+\varphi(x-at)}{2} + \frac{1}{2a}\int\limits_{x-at}^{x+at}\psi(\alpha)d\alpha$$
+
+Полученная формула -- \textbf{формула Даламбера}.
+
+\textbf{Теорема о применимости формулы Даламбера.} Пусть $\varphi(x) \in C^2(-\infty, \infty), \psi \in C^1[0,+\infty), a > 0$. Тогда формула Даламбера представляет единственное решение задачи Коши для уравнения колебания струны.
 
 % -------- source --------
 \bigbreak
-[\cite[page 200-202]{urmati_tikhonov}]
+[\cite[page 50-52]{urmati_tikhonov}]

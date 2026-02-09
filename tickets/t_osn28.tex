@@ -1,196 +1,139 @@
-\subsection{OSN 29 Вероятностное пространство. Случайные величины. Закон больших чисел в форме Чебышева.}
+\subsection{OSN 28 Схемы из функциональных элементов и простейшие алгоритмы их синтеза. Оценка сложности схем, получаемых по методу Шеннона.}
 
-\centerline{\textbf{Вероятностное пространство}}
+\textbf{Орграф} -- это ориентированный граф.
 
-\textbf{Пространство элементарных исходов $\Omega$} -- любое непустое множество, содержащее все возможные результаты случайного эксперимента.
+Вершины орграфа, в которые не входит ни одной дуги, называются \textbf{истоками}.
 
-Элементы $\omega \in \Omega$ -- \textbf{элементарные исходы} -- исходы случайного эксперимента, из которых в эксперименте происходит ровно один. 
+Орграф называется \textbf{ациклическим}, если в нем нет ориентированных циклов.
 
-Множество $\mathcal{F}$, элементами которого являются подмножества множества $\Omega$ (не обязательно все) называется \textbf{$\sigma$-алгеброй} (сигма-алгеброй), если выполнены следующие условия:
+Систему Б = {$g_1$, $g_2$, ..., $g_m$}, где все $g_i$ — функции алгебры логики, будем называть \textbf{базисом функциональных элементов}.
 
-1. $\Omega \in \mathcal{F}$;
+Орграф называется \textbf{упорядоченным}, если для каждой вершины $v_i$, в которую входит $k_i$ дуг, задан порядок $e_1$, $e_2$, ..., $e_{k_i}$ этих дуг.
 
-2. если $A \in \mathcal{F}$, то $\neg A \in \mathcal{F}$;
+\bigbreak
 
-3. $A_1,A_2,\dots~\in \mathcal{F} \implies \bigcup_{i=1}^{\infty} A_i \in \mathcal{F}$ (объединение по \textit{счетному} числу подмножеств)
+\textbf{Схемой из функциональных элементов} в базисе Б называется ациклический упорядоченный орграф, в котором:
+\begin{itemize}
+    \item каждому истоку приписана некоторая переменная, причем разным истокам приписаны разные переменные (истоки при этом называются входами схемы, а приписанные им переменные — входными переменными);
+    \item каждой вершине, в которую входят k $\geq$ 1 дуг, приписана функция из базиса Б, зависящая от k переменных(вершина с приписанной функцией при этом называется \textbf{функциональным элементом}); 
+    \item некоторые вершины выделены как \textbf{выходы}. 
+\end{itemize}
 
+\textbf{Сложностью} схемы из функциональных элементов называется число функциональных элементов в схеме (число внутренних вершин).
 
-Минимальная $\sigma$-алгебра, содержащая множество всех интервалов на вещественной прямой, называется \textbf{борелевской $\sigma$-алгеброй} в $\mathbb{R}$ и обозначается $\mathcal{B}(\mathbb{R})$. 
+Пример:
 
-\textbf{Борелевское множество} --- элемент борелевской $\sigma$-алгебры.
+\textbf{Полусумматор} Пусть $v$ и $v_1$ — выходы на рисунке, $f_v$ = x$\wedge$y $\wedge$ (x $\vee$ y)= x + y ; $f_{v_1}$ = x$\wedge$y . Сложность (число элементов) полусумматора равна 4.
 
-\textbf{Вероятность} $P$ --- действительная функция случайного события: $\mathcal{F} \rightarrow \mathbb{R}$, удовлетворяющая следующим условиям:
+\includegraphics[width=0.5\columnwidth]{pics/pol_sum.png}
 
-1. $P(\Omega) = 1$;
+% \textbf{Сумматором $S_n$} порядка n называется схема с 2n входами $x_1$, $x_2$, ..., $x_n$, $y_1$, $y_2$, ..., $y_n$ и n + 1 выходом $z_0$, $z_1$, $z_2$, ..., $z_n$ такая, что |$\widetilde{z}$| = |$S_n$ ($\widetilde{x}$,$\widetilde{y}$)| = |$\widetilde{x}$| + |$\widetilde{y}$|.
 
-2.  $\forall A \in \mathcal{F}\implies P(A) \geqslant 0$;
+% \textbf{Теорема} Существует схемный сумматор порядка n в базисе \{$\wedge$, $\vee$, $\bar{}$ \} с числом элементов 9n – 5.
 
-3. $\forall A_1,A_2,\dots,A_n,\dots \in \mathcal{F}:~A_i \cap A_j = \varnothing (i \neq j) \implies P(\displaystyle\bigcup_{i=1}^{\infty}A_i) = \displaystyle\sum_{i=1}^{\infty}P(A_i)$ (счётная аддитивность).
+% \includegraphics[width=\columnwidth]{pics/sum.png}
 
+% \textbf{Вычитателем $W_n$} порядка n называется схема с 2n входами $x_1$, $x_2$, ..., $x_n$,
+% $y_1$, $y_2$, ..., $y_n$ и n выходами $z_1$, $z_2$, ..., $z_n$ такая, что при |x| $\geq$ |y|, |$\widetilde{z}$| = |W ($\widetilde{x}$,$\widetilde{y}$)| = |$\widetilde{x}$| - |$\widetilde{y}$|.
 
-\textbf{Вероятностное пространство} -- тройка ($\Omega, \mathcal{F}, P$), где $\Omega$ -- множество элементарных исходов, $\mathcal{F}$ -- $\sigma$-алгебра над $\Omega$, вероятность $P$ определена на $\mathcal{F}$.
+% \textbf{Теорема} Существует схемный вычитатель порядка n в базисе \{$\wedge$, $\vee$, $\bar{}$ \} с числом элементов 9n – 5.
 
-\textbf{Пример: }
-Пусть $\Omega = (\omega_1,\dots,\omega_s)$, $\mathcal{F}$ --- всевозможные подмножества множества $\Omega$.
+% \includegraphics[width=\columnwidth]{pics/wich.png}
 
-$P(\omega_1) = \dots = P(\omega_s) = \frac{1}{s} \implies P(A) = \frac{|A|}{|\Omega|}$ --- классическое определение вероятности.
+% |$W_n$ ($\widetilde{x}$,$\widetilde{y}$)| = |$\widetilde{x}$| - |$\widetilde{y}$| = $2_n$ - 1 - (($2_n$ - 1 - |$\widetilde{x}$|) + |$\widetilde{y}$|)
+% и его можно построить, используя 2n отрицаний и 1 сумматор порядка n. При этом L ($W_n$) = 2n + L ($S_n$) = 2n + (9n – 5) = 11n – 5. Поскольку $\widetilde{x}$ $\geq$ $\widetilde{y}$, то ($2_n$ - 1 - |$\widetilde{x}$|) + |$\widetilde{y}$| $\leq$ $2_n$ - 1, и выход вычитателя определен. Теорема доказана.
 
-\centerline{\textbf{Случайные величины}}
+% \bigbreak
 
-Пара $(X, \mathcal{U})$, где X – произвольное множество, а $\mathcal{U}$ -- $\sigma$-алгебра над ним -- \textbf{измеримое пространство}. 
-
-Например, $(\Omega, \mathcal{F})$ и $(R, \mathcal{B})$ -- измеримые пространства. 
-
-Элементы  $\sigma$-алгебры $\mathcal{U}$ называются \textbf{измеримыми множествами}.
-
-Пусть даны измеримые пространства $(\Omega, \mathcal{F})$ и $(R, \mathcal{B})$. Функция $\xi : \Omega \rightarrow R$ называется \textbf{случайной величиной}, если прообраз любого борелевского множества $B \in \mathcal{B}$ является событием.
-
-\textbf{Распределением} случайной величины $\xi$ называется функция $P_{\xi}:~\mathcal{B} \rightarrow \mathbb{R}$, определенная $\forall B \in \mathcal{B}$ по правилу $P_{\xi}(B) = P(\xi \in B)$.
-
-\textbf{Функцией распределения} случайной величины $\xi$ называется отображение $F_{\xi}:~\mathbb{R} \rightarrow \mathbb{R}$, определённое по правилу: $F_{\xi}(x) = P(\xi < x)$ или $F_{\xi}(x) = P_{\xi}((-\infty, x))$.
-
-Случайная величина $\xi$ называется \textbf{дискретной случайной величеной}, если существует не более чем счетное множество $B$ такое, что $P_{\xi}(B) = 1$. Распределение, соответствующее дискретной случайной величине, также называется дискретным.
-
-\textit{Дискретная функция распределения} имеет вид:
-    \begin{equation*}
-        F_\xi(x) = P(\xi < x) = \sum\limits_{x_i < x}{}p_{i} = \sum\limits_{x_i < x}{} P(\xi = x_{i}).
-    \end{equation*}
-
-
-Распределение $\xi$ называется \textbf{абсолютно непрерывным}, если существует
-$f(x) \geqslant 0$ такая, что для любого борелевского множества $B$ справедливо
-\begin{equation*}
-    P_\xi(B) = \int\limits_B f(x) \lambda(dx),
-\end{equation*}
-где $f(x)$~--- \textit{плотность распределения}, $\lambda$~--- мера Лебега. 
-\textit{Абсолютно непрерывная функция распределения} имеет вид:
-\begin{equation*}
-    F_\xi(x) = P(\xi < x) = \int\limits_{-\infty}^x f(t)dt.
-\end{equation*}
-
-
-\textbf{Пример}: равномерное распределение
-$f(x) = \begin{cases}\frac{1}{b - a},& x\in[a,b]\\ 0,& x\notin[a,b] \end{cases}$
-
-% \begin{figure}
-    % \centering
-    % \includegraphics[width=0.01\textwidth]{pics/abs.png}
-    % \caption{Пример равномерного распределения}
-    % \label{abs}
-% \end{figure}
-\includegraphics[width=\columnwidth]{pics/abs.png}
-
-
-\textbf{Математическим ожиданием} случайной величины $\xi$ называется число $E\xi = \int\limits_{\Omega} \xi(\omega) P(d\omega)$ или $\int\limits_{-\infty}^{+\infty} x dF_{\xi}(x)$.
-Если интеграл расходится, то говорят, что математического ожидания не существует.
-
-В случае дискретной сл. вел.: $E\xi = \displaystyle\sum_{i} x_i p_i$.
-
-В случае абсолютно непрерывной сл. вел.: $E\xi = \int x f(x) dx$
-
-\textbf{Дисперсией} случайной величины $\xi$ называется число $D\xi = E(\xi - E\xi)^2$, $\sigma = \sqrt{D \xi}$ -- \textbf{среднеквадратическое отклонение}.
-
-% Пусть $\xi$ и $\eta$ -- случайные величины. 
-% Дисперсия их суммы в общем случае равна $D(\xi+n)=D \xi+D \eta + 2 \bigl( E (\xi \eta)-E \xi \, E \eta \bigr)$. 
-Величина $\operatorname{cov}(\xi, \eta) \equiv E (\xi \eta)-E \xi \, E \eta$ называется \textbf{ковариацией} случайных величин $\xi$ и $\eta$. Если $\xi$ и $\eta$ независимы, то $\operatorname{cov}(\xi, \eta) = 0$. Обратное, вообще говоря, неверно.
-
-
-\centerline{\textbf{Закон больших чисел в форме Чебышева}}
-
-\textbf{Неравенство Чебышёва}
-Если $\exists D\xi$, то $\forall \varepsilon > 0$
-\begin{equation*}
-    P(|\xi-E \xi| \geqslant \varepsilon) \leqslant \frac{D \xi}{\varepsilon^{2}}.
-\end{equation*}
-
-
-\begin{proof}
-    Для $\varepsilon > 0$ неравенство $|\xi - E \xi| \geqslant \varepsilon \iff (\xi - E \xi)^2 \geqslant \varepsilon^2$, поэтому $P(|\xi-E \xi| \geqslant \varepsilon) = 
-        P\left((\xi-E \xi)^{2} \geqslant \varepsilon^{2}\right) \leqslant 
-        \cfrac{E (\xi-E \xi)^{2}}{\varepsilon^{2}} =
-        \cfrac{D \xi}{\varepsilon^{2}}$.
-\end{proof}
-
-\textbf{Следствие}:
-Если $\varepsilon = 3\sigma$, где $\sigma$ --- стандартное отклонение, то получим
-\begin{equation*}
-    P\bigl( |\xi-E \xi|> 3 \sigma \bigr) \leqslant 
-    \frac{D \xi}{9 \sigma^2} = 
-    \frac{D \xi}{9 \, D \xi} =
-    \frac{1}{9} \iff 
-    P\bigl( |\xi-E \xi| \leqslant 3 \sigma \bigr) \geqslant 
-    1-\frac{1}{9} = 
-    \frac{8}{9}.
-\end{equation*}
-Это соотношение называется \textbf{правилом трёх сигм}.
-
-Последовательность случайных величин $\{\xi_n\}_{n = 1}^{+\infty}$ 
-\textbf{сходится по вероятности} к случайной величине $\xi$ ($\xi_n \xrightarrow[]{\text{P}} \xi$), если
-$$
-    \forall \varepsilon>0 \quad P \biggl( \Bigl\{ \omega \colon |\xi_{n}(\omega)-\xi(\omega)|>\varepsilon \Bigr\} \biggr) \xrightarrow[n \to +\infty]{} 0.
-$$
-
-\textbf{Закон больших чисел в форме Чебышёва}:
-$\forall$ последовательности $\xi_1, \xi_2, \ldots$ попарно независимых и одинаково распределённых случайных величин для которых $E \xi_i^2 < \infty \implies$ 
-\begin{equation*}
-    \frac{\xi_{1}+\ldots+\xi_{n}}{n} \xrightarrow[n \to + \infty]{\text{P}} E \xi_{1}.
-\end{equation*}
-
-
-\begin{proof}
-    $S_n = \xi_1 + \ldots + \xi_n$, Из линейности матожидания получим
-    \begin{equation*}
-        E \left(\frac{S_{n}}{n}\right)=\frac{E \xi_{1}+\ldots+E \xi_{n}}{n}=\frac{n E \xi_{1}}{n}=E \xi_{1}.
-    \end{equation*}
+% \textbf{Метод Шеннона.}
     
-    Пусть $\varepsilon > 0$. Воспользуемся неравенством Чебышёва:
-    \begin{multline*}
-        P\left(\left|\frac{S_{n}}{n}-E \left(\frac{S_{n}}{n}\right)\right| \geqslant \varepsilon\right) \leqslant \frac{D\left(\frac{S_{n}}{n}\right)}{\varepsilon^{2}}
-        = \frac{D S_{n}}{n^{2} \varepsilon^{2}}
-        = \frac{D \xi_{1}+\ldots+D \xi_{n}}{n^{2} \varepsilon^{2}}= \\
-        = \frac{n D \xi_{1}}{n^{2} \varepsilon^{2}}
-        = \frac{D \xi_{1}}{n \varepsilon^{2}} \xrightarrow[n \to +\infty]{} 0,
-    \end{multline*}
-    т.к. $D\xi_1 < \infty$. Дисперсия суммы превратилась в сумму дисперсий в силу попарной независимости слагаемых, из-за которой все ковариации $\operatorname{cov}(\xi_i, \xi_j)$ по свойству ковариации обратились в нуль при $i \neq j$.
-\end{proof}
+% Выбираем параметр $q$, $1 \leqslant q \leqslant n$.
+
+% Используется \textbf{разложение Шеннона}:
+% $$ f(\underbrace{x_1,\dots,x_q}_{x'},\underbrace{x_{q+1},\dots,x_n}_{x''}) = $$
+% $$ = \displaystyle\bigvee_{\sigma''=(\sigma_{q+1},\dots,\sigma_n)} x_{q+1}^{\sigma_{q+1}}\cdots x_n^{\sigma_n}\cdot f_{\sigma''}(x_1,\dots,x_q,\sigma_{q+1},\dots,\sigma_n)$$
+
+% Для любой ФАЛ $f \in P_2(n)$ строим СФЭ $\Sigma_f$ как суперпозицию $\Sigma''(\Sigma')$, где $\Sigma''$ --- мультиплексор, $\Sigma'$ --- универсальный многополюсник.
+
+% \includegraphics[width=\columnwidth]{pics/osn27_oki.png}
+% Схема для $\Sigma_f = \Sigma''(\Sigma')$
 
 
-\textbf{Центральная предельная теорема}:
-    Пусть $\xi_{1}, \xi_{2}, \ldots$~--- последовательность независимых одинаково распределенных невырожденных случайных величин с $E \xi_{1}^{2}<\infty$ и $S_{n}=\xi_{1}+\ldots+\xi_{n}$. 
-    Тогда
-    \begin{equation*}
-        P\left(\frac{S_{n}-E S_{n}}{\sqrt{D S_{n}}} \leqslant x\right)
-        \xrightarrow[n \to +\infty]{}
-        \Phi(x) = \frac{1}{\sqrt{2 \pi}} \int\limits_{-\infty}^{x} e^{-\frac{u^{2}}{2}} du~~ \forall x \in R
-    \end{equation*}
+% Сложность многополюсника от $q$ переменных: $L(\Sigma') \leqslant 2^{2^q} - q $ (следует из леммы)
 
+% Сложность мультиплексора от $n-q$ переменных: $L(\Sigma'') \leqslant 2^{n - q + 2} - 3$
+
+% Полагая $q = \lfloor \log_2(n - 2\log_2 n) \rfloor$ получаем в результате преобразований: 
+% $$ L(\Sigma_f) \leqslant 2^{2^q} + 4\cdot 2^{n - q} \leqslant \frac{8 \cdot 2^n}{n - 2\log n} + O(\frac{2^n}{n^2}) $$
+
+% \textbf{Таким образом, верна оценка сложности СФЭ: }$L^C(n) \lesssim 8 \cdot \frac{2^n}{n}$
+
+\bigbreak
+\textbf{Важные ФАЛ и системы ФАЛ:}
+\begin{itemize}
+    \item Мультиплексорная ФАЛ $\mu_n$ порядка $n$
+    $$ \mu(\displaystyle\underbrace{x_1,\dots,x_n}_{\text{адресные}},\displaystyle\underbrace{y_0,\dots,y_{2^n-1}}_{\text{информационные}}) = \displaystyle\bigvee_{\alpha=(\alpha_1,\dots,\alpha_n)} x_1^{\alpha_1} \dots x_n^{\alpha_n} y_{\nu(\alpha)},$$
+    где $\nu(\alpha)$ -- перевод двоичного числа $\alpha$ в десятичное.
+    
+    Реализуется мультиплексором.
+    \item Универсальная система $\vec{P_2}(n)$ порядка $n$ --- содержит все ФАЛ от $n$ переменных. Реализуется универсальным многополюсником.
+\end{itemize}
+
+
+\bigbreak
+\textbf{Лемма.} Для каждого натурального $n$ существует СФЭ над базисом $B$ $U_n \in U_B^C$(множество всех схем на базисом $B$), которая реализует систему ФАЛ $\vec{P_2}(n)$ и сложность которой равна $2^{2^n} - n$.
+    
 \begin{proof}
-Пусть $E \xi_{1}=m,\, D \xi_{1}=\sigma^{2}$. 
-Введём $X = \xi_1 - m$ и $D \phi_X(t)=E e^{i tX}$ и 
-$
-    D \phi_{n}(t)=E e^{i t \frac{S_{n}-E S_{n}}{\sqrt{D S_{n}}}} = 
-    \left[D \phi_X\left(\frac{t}{\sigma \sqrt{n}}\right)\right]^{n}
-$
-
-В силу разложения характеристической функции (при $\exists$ соответствующих моментов)
-$
-    D \phi_{X}(t)=1+i t E X+\ldots+\frac{(i t)^{n}}{n !} E X^{n}+R_{n}(t)
-$
-
-Т.к. $E X = E \left[ \xi_1 - m\right] = 0$, при $n=2$: 
-$
-    D \phi(t)=1-\frac{\sigma^{2} t^{2}}{2}+\overline{o}\left(t^{2}\right), \quad t \to 0
-$.
-
-$\forall t \in R$ при $n \to +\infty \implies $
-$
-    D \phi_{n}(t)=\left[1-\frac{\sigma^{2} t^{2}}{2 \sigma^{2} n}+\overline{o}\left(\frac{1}{n}\right)\right]^n \to e^{-\frac{t^{2}}{2}}
-$
-
-Функция $e^{-\frac{t^{2}}{2}}$ -- характеристическая функциия $N_{0,1}$. 
-В силу теоремы о непрерывном соответствии между функциями распределения и характеристическими функциями Ц.П. теорема доказана.
+В силу полноты базиса в $U_B^C$ существует система СФЭ $\Sigma$ от БП $x_1,\dots,x_n$, реализующая систему ФАЛ $\vec{P_2}(n)$. Искомая СФЭ $U_n$ является строго приведённой СФЭ, которая эквивалентна $\Sigma$ и получается из неё в результате операций присоединения эквивалентных вершин и удаления висячих вершин. Действительно, из построения следует, что число всех вершин СФЭ $U_n$, включая $n$ её входов, равно $2^{2^n}$ и поэтому $L(U_n) = 2^{2^n} - n$ (вычитаем $n$ входов, которые автоматически реализуют функции $x_1,\dots,x_n$).
 \end{proof}
+
+\textbf{Следствие.} $L_B^C(\vec{P_2}(n)) \leqslant 2^{2^n} - n$.
+
+\bigbreak
+Базис $B_0 = \{\&, \vee, \neg\}$
+
+\bigbreak
+\textbf{Определения сложности.}
+    
+\textbf{Сложность ФАЛ f}: $L_B(f) = \displaystyle \min_{\substack{\text{СФЭ}~\Sigma \in U_B^C \\ \text{реализующие }f}} L(\Sigma)$
+
+\textbf{Функция Шеннона}: $L_B(n) = \displaystyle \max_{f \in P_2(n)} L_B(f)$
+    
+\bigbreak
+\textbf{Синтез по совершенной ДНФ} 
+    
+Совершенная ДНФ $f(x_1,\dots,x_n) = \displaystyle\bigvee_{\sigma \in N_f} x_1^{\sigma_1} \&\dots\&x_n^{\sigma_n}$, где $N_f$ --- все наборы $\sigma$, на которых $f(\sigma) = 1$.
+
+Совершенная ДНФ --- формула в $B_0$, значит существует СФЭ $\Sigma_f$ над базисом $B_0$, которая реализует $f$. 
+
+Тогда 
+$L(\Sigma_f) \leqslant \underbrace{2^n}_{1}(\underbrace{n - 1}_{2} + \underbrace{n}_{3} ) + \underbrace{2^n - 1}_{4}$,
+где 1 --- верхняя оценка $|N_f |$, т.е. количества дизъюнктов в овершенной ДНФ, 2 --- количество конъюнкций в каждом дизъюнкте, 3 --- верхняя оценка количества отрицаний в дизъюнкте, 4 --- оценка количества дизъюнкций между дизъюнктами. СФЭ --- частный случай квазидеревьев, которые эквивалентны формулам, поэтому  $L^C(n) \leqslant L^{\Phi}(n)$
+Так получаем верхнюю оценку функции Шеннона: $L^C(n) \leqslant L(\Sigma_f) \leqslant n \cdot 2^{n+1}$.
+
+\bigbreak    
+\textbf{Метод Шеннона.}
+    
+Выбираем параметр $q$, $1 \leqslant q \leqslant n$.
+
+Используется \textbf{разложение Шеннона}:
+
+$f(\underbrace{x_1,\dots,x_q}_{x'},\underbrace{x_{q+1},\dots,x_n}_{x''}) = $ \\
+$= \displaystyle\bigvee_{\sigma''=(\sigma_{q+1},\dots,\sigma_n)} x_{q+1}^{\sigma_{q+1}}\cdots x_n^{\sigma_n}\cdot f_{\sigma''}(x_1,\dots,x_q,\sigma_{q+1},\dots,\sigma_n)$
+
+Для любой ФАЛ $f \in P_2(n)$ строим СФЭ $\Sigma_f$ как суперпозицию $\Sigma''(\Sigma')$, где $\Sigma''$ --- мультиплексор, $\Sigma'$ --- универсальный многополюсник.
+
+\includegraphics[width=0.9\columnwidth]{pics/osn27_oki.png}
+
+Сложность многополюсника от $q$ переменных: $L(\Sigma') \leqslant 2^{2^q} - q $ (следует из леммы)
+
+Сложность мультиплексора от $n-q$ переменных: $L(\Sigma'') \leqslant 2^{n - q + 2} - 3$
+
+Полагая $q = \lfloor \log_2(n - 2\log_2 n) \rfloor$ получаем в результате преобразований: 
+$$ L(\Sigma_f) \leqslant 2^{2^q} + 4\cdot 2^{n - q} \leqslant \frac{8 \cdot 2^n}{n - 2\log n} + O(\frac{2^n}{n^2}) $$
+
+\textbf{Таким образом, верна оценка сложности СФЭ: }$L^C(n) \lesssim 8 \cdot \frac{2^n}{n}$
 
 % -------- source --------
 \bigbreak
-[\cite[page 1-53]{stat_book}]
+[\cite[page 69-96]{replace_me}]
